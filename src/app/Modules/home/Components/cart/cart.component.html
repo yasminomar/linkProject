@@ -1,0 +1,56 @@
+<app-header></app-header>
+<div class="container">
+    <div class="row">
+        <div class="col-8">
+            <table >
+                <thead class="thead">
+                  <tr class="theadTr" >
+                    <th scope="col" ></th>
+                    <th scope="col">Product Image</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Total Price</th>
+                  </tr>
+                </thead>
+                <tbody >
+                  <tr *ngFor="let product of productsInCartReadDto">
+                    <th scope="row" ><mat-icon (click)="deleteProductFromCart(product.product.id)">delete_forever</mat-icon></th>
+                    <td>  <div class="product-image"><img class="card-img-top" width="30px" height="50px" src="{{ ServerBase }}{{ product.product.image}}" /></div></td>
+                    <td>{{product.product.englishName}}</td>
+                    <td>{{product.product.unitPrice}}</td>
+                    <td><input #quantityValue (change)="quantityChanged(product.product.id,quantityValue.value)" [value]="product.quantity"  type="number" min="1" max="20" name=""></td>
+                    <td #myTotalPrice >{{product.product.totalPrice}}</td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>    
+        <div class="col-4">
+          <table >
+            <thead class="thead">
+              <tr class="theadTr" >
+                <th scope="col" >Total</th>
+                <th scope="col">Price Image</th>
+              </tr>
+            </thead>
+            <tbody >
+              <tr >
+                <th>Subtotal:</th>
+                <td></td>
+              </tr>
+              <tr >
+                <th>Shipping:</th>
+                <td></td>
+              </tr>
+              <tr >
+                <th>Total:</th>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <button class="buttun">Update Cart</button>
+          <button class="buttun">Check Out</button>
+
+      </div>
+    </div>
+</div>
