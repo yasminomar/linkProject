@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgxSmartModalService } from 'ngx-smart-modal';
@@ -26,9 +26,7 @@ export class ProductsControllerComponent implements OnInit {
       Validators.required,
       Validators.pattern(/^[\u0621-\u064A\u0660-\u0669 ]+$/),
     ]),
-    image: new FormControl('', [
-      Validators.required
-    ]),
+    image: new FormControl(),
     quantity: new FormControl('', [
       Validators.required,
       Validators.max(10000),
@@ -46,6 +44,7 @@ export class ProductsControllerComponent implements OnInit {
       Validators.required,
     ]),
   });
+  @ViewChild('editedImage') input:ElementRef|null=null;
 
   totalCount=1;
   currentPage=1;
@@ -62,6 +61,9 @@ export class ProductsControllerComponent implements OnInit {
     private ngxSmartModalService: NgxSmartModalService
 
   ) {}
+  // ngAfterViewInit(): void {
+  //   console.log(this.input!.nativeElement.value)
+  // }
   ngOnInit(): void {
     this.GetProducts(1);
     this.GetCategories();
@@ -113,12 +115,15 @@ export class ProductsControllerComponent implements OnInit {
       },
     });
   }
-  AddProduct(){
+  AddOrEditProduct(){
+    var input = document.querySelector(
+      'input[type="file"]'
+    ) as HTMLInputElement;
     const { value, valid, dirty } = this.ProductForm;
-    if (!valid || !dirty) return;
+   
+    if (!valid || !dirty||!this.validateImage()) return;
     if(!this.productToEdit){
       var formData=new FormData(document.querySelector('form')!);
-
       this.productService.AddProduct(formData).subscribe({
         next: (product) => {
           alert("Product Added Sucecss");
@@ -132,50 +137,30 @@ export class ProductsControllerComponent implements OnInit {
         },
       });
     }
-    // else {
-    //   let ProductUpdate: ProductReadDto = {
-    //     englishName:product.englishName,
-    //     arabicName:product.arabicName,
-    //     unitPrice:product.unitPrice,
-    //     quantity:product.quantity,
-    //     categoryId:product.category.id,
-    //     vendorId:product.vendor.id
-    //   };
-    //   this.contactService
-    //     .editContact(this.contactToEdit.contactId, contactUpdate)
-    //     .subscribe({
-    //       next: (response) => {
-    //         if (!this.AddOrEditForm.value.image) {
-    //           response.image = this.DefaultImage;
-    //           const indexToEdit = this.contacts.findIndex(
-    //             (c) => c.contactId === response.contactId
-    //           );
-    //           this.contacts.splice(indexToEdit, 1, response);
+    else {
+      var formData=new FormData(document.querySelector('form')!);
+      formData.append("id",this.productToEdit?.id??"")
 
-    //           this.contactToEdit = null;
-    //           this.AddOrEditForm.reset();
-    //           this.ngxSmartModalService.getModal('contactrModal').close();
-    //           return;
-    //         }
+      this.productService
+        .editProduct(this.productToEdit.id!, formData)
+        .subscribe({
+          next: (product) => {
+              const indexToEdit = this.productsReadDto.findIndex(
+                (p) => p.id === product.id)
+              this.productsReadDto.splice(indexToEdit, 1, product);
 
-    //         this.onUpload(response.contactId!).subscribe((res) => {
-    //           console.log(res);
-    //           response.image = res.dbPath;
-    //           const indexToEdit = this.contacts.findIndex(
-    //             (c) => c.contactId === response.contactId
-    //           );
-    //           this.contacts.splice(indexToEdit, 1, response);
+              this.productToEdit = null;
+              this.ProductForm.reset();
+              this.ngxSmartModalService.getModal('openProductCreationModal').close();
+            
 
-    //           this.contactToEdit = null;
-    //           this.AddOrEditForm.reset();
-    //           this.ngxSmartModalService.getModal('contactrModal').close();
-    //         });
-    //       },
-    //       error: (err) => {
-    //         console.log(err);
-    //       },
-    //     });
-    // }
+       
+          },
+          error: (err) => {
+            console.log(err);
+          },
+        });
+    }
 
     
 
@@ -189,18 +174,36 @@ export class ProductsControllerComponent implements OnInit {
 
   editProduct(event:any,product:ProductReadDto){
     event.stopPropagation();
-    this.productToEdit=product;
-    this.ProductForm.patchValue({
-      englishName:product.englishName,
-      arabicName:product.arabicName,
-      unitPrice:product.unitPrice,
-      quantity:product.quantity,
-      categoryId:product.category.id,
-      vendorId:product.vendor.id
+
+    this.productService.getImage(this.ServerBase+product.image).subscribe({
+      next:(file)=>{
+        this.ngxSmartModalService.getModal('openProductCreationModal').open();
+
+        this.productToEdit=product;
+        var input = document.querySelector(
+          'input[type="file"]'
+        ) as HTMLInputElement;
+        var data = new DataTransfer();
+        data.items.add(file);
+        input!.files = data.files;        
+        this.ProductForm.patchValue({
+          englishName:product.englishName,
+          arabicName:product.arabicName,
+          unitPrice:product.unitPrice,
+          quantity:product.quantity,
+          categoryId:product.category.id,
+          vendorId:product.vendor.id,
+          
+          
+        })
+
+      },
+
 
     })
 
-    this.ngxSmartModalService.getModal('openProductCreationModal').open();
+  
+
   }
 
 
@@ -244,7 +247,12 @@ export class ProductsControllerComponent implements OnInit {
 
 
 
-
+  validateImage(){
+    var input = document.querySelector(
+         'input[type="file"]'
+       ) as HTMLInputElement|null;
+   return input?.files?.length
+ }
 
 
 

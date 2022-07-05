@@ -18,9 +18,11 @@ table th{
 
 }
 table{
+    
+    margin: auto;
+    border: 1px solid #EFEFEF;
     margin-top: 150px;
     margin-bottom: 50px;
-    border: 1px solid #EFEFEF;
 
 }
 
@@ -45,7 +47,13 @@ table{
 }
 
 
-addIcon{
+.addIcon{
     color: #F28123;
-    font-size: 20px;
+    font-size: 50px;
+    margin-left: 35px;
+
+}
+
+.pagi{
+    margin: auto;
 }

@@ -5,13 +5,14 @@ import { CartReadDto, ProductInCartReadDto, ProductInCartUpdateDto, ProductInCar
 import { OrderHistoryReadDto, OrderReadDto, OrderWriteDto } from '../Models/order.models';
 import { CategoryReadDto } from '../Models/category.models';
 import { VendorReadDto } from '../Models/vendor.models';
+import { map, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsService {
 
-  baseURL: string = 'https://yasmineonlineshopping.azurewebsites.net/api';
+  baseURL: string = 'http://localhost:20517/api';
   constructor(private httpClient: HttpClient) { }
   getAllProducts(productParameters:any){
     return this.httpClient.post<ProductPaginationReadDto>(this.baseURL+"/Product/sortedProduct",productParameters)
@@ -105,5 +106,19 @@ export class ProductsService {
     return this.httpClient.delete<ProductReadDto>(this.baseURL+"/Product/"+id)
 
   }
-  
+  editProduct(id:string,productToEdit:FormData){
+    return this.httpClient.put<ProductReadDto>(this.baseURL+"/Product/"+id,productToEdit)
+
+
+  }
+
+
+  getImage(image: string): Observable<File> {
+    return this.httpClient
+      .get(image, {
+        responseType: 'blob',
+      })
+      .pipe(map((blob) => new File([blob], 'image.jpg', { type: blob.type })));
+  }
+
 }

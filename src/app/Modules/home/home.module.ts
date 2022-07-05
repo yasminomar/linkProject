@@ -40,5 +40,9 @@ import { MyOrdersComponent } from './Components/my-orders/my-orders.component';
     MatIconModule ,
     NgxSmartModalModule.forChild()
 
-  ]})
+  ],
+  exports:[
+    HeaderComponent
+  ]
+})
 export class HomeModule { }

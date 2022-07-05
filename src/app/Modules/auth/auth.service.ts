@@ -12,7 +12,7 @@ import jwt_decode from 'jwt-decode';
 export class AuthService {
 
 
-  baseURL: string = 'https://yasmineonlineshopping.azurewebsites.net/api/Account';
+  baseURL: string = 'http://localhost:20517/api/Account';
 
 
   constructor(private http:HttpClient,private router: Router){}
