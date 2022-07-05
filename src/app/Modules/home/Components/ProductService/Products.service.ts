@@ -11,7 +11,7 @@ import { VendorReadDto } from '../Models/vendor.models';
 })
 export class ProductsService {
 
-  baseURL: string = 'http://localhost:20517/api';
+  baseURL: string = 'https://yasmineonlineshopping.azurewebsites.net/api';
   constructor(private httpClient: HttpClient) { }
   getAllProducts(productParameters:any){
     return this.httpClient.post<ProductPaginationReadDto>(this.baseURL+"/Product/sortedProduct",productParameters)

@@ -1,4 +1,4 @@
 export const environment = {
-  ServerBase: "http://localhost:20517/",
+  ServerBase: "https://yasmineonlineshopping.azurewebsites.net/",
   production: true
 };

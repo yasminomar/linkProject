@@ -3,7 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  ServerBase: "http://localhost:20517/",
+  ServerBase: "https://yasmineonlineshopping.azurewebsites.net/",
   production: false
 };
 
