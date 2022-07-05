@@ -1,0 +1,25 @@
+.adminContainer{
+    display:flex;
+    
+}
+
+.adminDiv{
+    color:white;
+    padding-top: 60px;
+    padding-left: 100px;
+    padding-right: 100px;
+    padding-bottom: 60px;
+    font-size: 30px;
+    cursor: pointer;
+    margin-left: 200px;
+    margin-top: 200px;
+    margin-bottom: 200px;
+}
+
+.cat{
+    background-color: #F28123;
+}
+
+.prod{
+    background-color: #374B56;
+}

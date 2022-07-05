@@ -1,0 +1,51 @@
+.thead{
+    background-color:#EFEFEF;
+}
+.theadTr{
+    font-family:  sans-serif;
+    font-weight:lighter;
+
+}
+
+table td{
+    padding: 40px;
+    border: 1px solid #EFEFEF;
+
+}
+table th{
+    padding: 20px;
+    border: 1px solid #EFEFEF;
+
+}
+table{
+    margin-top: 150px;
+    margin-bottom: 50px;
+    border: 1px solid #EFEFEF;
+
+}
+
+.buttun{
+    border: none;
+
+    font-family: 'Poppins', sans-serif;
+    display: inline-block;
+    background-color: #F28123;
+    color: #fff;
+    padding: 10px 10px;
+    border-radius: 28px;
+    text-decoration: none;
+    margin-left: 10px;
+
+}
+
+.myIcon{
+    color: #F28123;
+    margin-left: 20px;
+
+}
+
+
+addIcon{
+    color: #F28123;
+    font-size: 20px;
+}

@@ -1,3 +1,4 @@
+import { NgxSmartModalModule } from 'ngx-smart-modal';
 import { MatIconModule } from '@angular/material/icon';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -10,7 +11,11 @@ import { HomeRouting } from './home-routing';
 import { HomeComponent } from './home.component';
 import { HeaderComponent } from './Components/header/header.component';
 import { CartComponent } from './Components/cart/cart.component';
-import {NgxPaginationModule} from 'ngx-pagination'; 
+import {NgxPaginationModule} from 'ngx-pagination';
+import { CheckOutComponent } from './Components/check-out/check-out.component';
+import { OrderComponent } from './Components/order/order.component';
+import { MyOrdersComponent } from './Components/my-orders/my-orders.component'; 
+
 
 
 @NgModule({
@@ -19,16 +24,21 @@ import {NgxPaginationModule} from 'ngx-pagination';
     AdminComponent,
     CustomerComponent,
     HeaderComponent,
-    CartComponent
+    CartComponent,
+    CheckOutComponent,
+    OrderComponent,
+    MyOrdersComponent,
   ],
   imports: [
     NgxPaginationModule,
     HomeRouting,
     CommonModule,
-    ReactiveFormsModule,
     HttpClientModule,
     RouterModule,
+    ReactiveFormsModule,
     FormsModule ,
-    MatIconModule 
+    MatIconModule ,
+    NgxSmartModalModule.forChild()
+
   ]})
 export class HomeModule { }

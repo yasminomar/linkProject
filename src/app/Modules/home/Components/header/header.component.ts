@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/Modules/auth/auth.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ProductsService } from '../ProductService/Products.service';
 
 @Component({
@@ -11,8 +11,12 @@ import { ProductsService } from '../ProductService/Products.service';
 export class HeaderComponent implements OnInit {
   isLoggedIn:boolean=false;
   isAdmin : boolean = false;
+  searchValue='';
+  @Output() searchValueChanged:EventEmitter<string>;
 
-  constructor(private productService: ProductsService,private auth: AuthService,private authService :AuthService,private router:Router) { }
+  constructor(private productService: ProductsService,private auth: AuthService,private authService :AuthService,private router:Router) { 
+    this.searchValueChanged=new EventEmitter<string>();
+  }
 
   ngOnInit(): void {
 this.isLoggedIn=this.authService.isLoggedIn()
@@ -48,7 +52,11 @@ this.CheckAdmin();
 
   }
   GoToProducts(){
-    this.router.navigate(['/home/products'])
+    this.router.navigate(['/home/products']);
+  }
+  GoToOrders(){
+    this.router.navigate(['/home/myOrders']);
+
   }
   CheckAdmin(){
     const token = this.auth.getToken();
@@ -58,6 +66,12 @@ this.CheckAdmin();
       this.isAdmin = true;
 
     }
+  }
+
+  Search(productName:string){
+
+    this.searchValue=productName;
+    this.searchValueChanged.emit(this.searchValue);
   }
 
 }

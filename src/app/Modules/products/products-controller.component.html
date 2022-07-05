@@ -1,0 +1,113 @@
+<div >
+  <mat-icon class="addIcon" (click)="openProductCreation()">add</mat-icon>
+    <table >
+        <thead class="thead">
+          <tr class="theadTr" >
+            <th scope="col">Product Image</th>
+            <th scope="col">English Name</th>
+            <th scope="col">Arabic Name</th>
+            <th scope="col">Product Category</th>
+            <th scope="col">Vendor</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Price</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody >
+          <tr *ngFor="let product of productsReadDto">
+            <td>  <div class="product-image"><img class="card-img-top" width="30px" height="50px" src="{{ ServerBase }}{{ product.image}}" /></div></td>
+            <td>{{product.englishName}}</td>
+            <td>{{product.arabicName}}</td>
+            <td>{{product.category.name}}</td>
+            <td>{{product.vendor.name}}</td>
+            <td>{{product.quantity}}</td>
+            <td>{{product.unitPrice}}</td>
+            <td><mat-icon class="myIcon"(click)="editProduct($event,product)" >edit</mat-icon> <mat-icon (click)="deleteProduct($event,product.id!)" class="myIcon">delete_forever</mat-icon></td>
+          </tr>
+        </tbody>
+      </table>
+</div>  
+
+
+
+<ngx-smart-modal #openProductCreationModal identifier="openProductCreationModal">
+<form [formGroup]="ProductForm" (ngSubmit)="AddProduct()">
+  <div>
+    <label>English Name</label>
+    <input name="englishName" formControlName="englishName" required="required">
+    <div class= "error-message" *ngIf="ProductForm.get('englishName')?.invalid && ProductForm.get('englishName')?.touched">
+      <span *ngIf="ProductForm.get('englishName')?.hasError('required')">English Name is required</span>
+      <span *ngIf="ProductForm.get('englishName')?.hasError('pattern')" >please enter valid English Name</span>
+    </div>
+  </div>
+
+
+  <div>
+    <label>Arabic Name</label>
+    <input name="arabicName" formControlName="arabicName" required="required">
+    <div class= "error-message" *ngIf="ProductForm.get('arabicName')?.invalid && ProductForm.get('arabicName')?.touched">
+      <span *ngIf="ProductForm.get('arabicName')?.hasError('required')">Arabic Name is required</span>
+      <span *ngIf="ProductForm.get('arabicName')?.hasError('pattern')" >please enter valid Arabic Name</span>
+    </div>
+  </div>
+
+
+
+  <div>
+    <label>Quantity</label>
+    <input name="quantity" type="number" formControlName="quantity" required="required">
+    <div class= "error-message" *ngIf="ProductForm.get('quantity')?.invalid && ProductForm.get('quantity')?.touched">
+      <span *ngIf="ProductForm.get('quantity')?.hasError('required')">Quantity is required</span>
+      <span *ngIf="ProductForm.get('quantity')?.hasError('max')" >quantity must be less than or = 1000</span>
+      <span *ngIf="ProductForm.get('quantity')?.hasError('min')" >quantity must be more than or = 1</span>
+
+    </div>
+  </div>
+
+
+
+
+  <div>
+    <label>Price</label>
+    <input name="unitPrice" type="number" formControlName="unitPrice" required="required">
+    <div class= "error-message" *ngIf="ProductForm.get('unitPrice')?.invalid && ProductForm.get('unitPrice')?.touched">
+      <span *ngIf="ProductForm.get('unitPrice')?.hasError('required')">Price is required</span>
+      <span *ngIf="ProductForm.get('unitPrice')?.hasError('max')" >price must be less than or = 1000</span>
+      <span *ngIf="ProductForm.get('unitPrice')?.hasError('min')" >price must be more than or = 1</span>
+
+    </div>
+  </div>
+
+
+  <div>
+    <label>Product Image</label>
+    <input name="image" type="file" formControlName="image" required="required">
+    <div class= "error-message" *ngIf="ProductForm.get('image')?.invalid && ProductForm.get('image')?.touched">
+      <span *ngIf="ProductForm.get('image')?.hasError('image')">Image is required</span>
+    </div>
+  </div>
+
+<div>
+  <label>Product Category</label>
+  <select name="categoryId" formControlName="categoryId"class="form-select form-select-sm"aria-label=".form-select-sm example">
+    <option selected>Select Option</option>
+    <option *ngFor="let category of categoryReadDto"value="{{ category.id }}">{{ category.name }}</option>
+  </select>
+</div>
+
+<div>
+  <label>Vendor</label>
+  <select name="vendorId" formControlName="vendorId"class="form-select form-select-sm"aria-label=".form-select-sm example">
+    <option selected>Select Option</option>
+    <option *ngFor="let vendor of vendorReadDto"value="{{ vendor.id }}">{{ vendor.name }}</option>
+  </select>
+</div>
+
+
+<button type="submit"></button>
+</form>
+</ngx-smart-modal>
+
+
+<pagination-controls class="pagi"(pageChange)="GetProducts($event)"></pagination-controls>
+

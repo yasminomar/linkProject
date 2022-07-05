@@ -1,0 +1,23 @@
+<app-header></app-header>
+<div class="col-6">
+    <table >
+      <thead class="thead">
+        <tr class="theadTr" >
+          <th scope="col" >Order Details</th>
+        </tr>
+      </thead>
+      <tbody >
+        <tr >
+
+            <td><mat-icon> location_on</mat-icon><input #ShipmentAddress placeholder="Shipment Address"></td>
+        </tr>
+        <tr >
+            <td><mat-icon>credit_card</mat-icon><input #PaymentMethod placeholder="Payment Method"></td>
+        </tr>
+      </tbody>
+    </table>
+    <button class="buttun" (click)="CreateOrder(ShipmentAddress.value,PaymentMethod.value)">Order</button>
+
+
+
+</div>

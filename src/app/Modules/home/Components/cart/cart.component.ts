@@ -1,10 +1,7 @@
-//import { ProductInCartReadDto } from './../Models/cart.model';
-import { Product } from './../Models/product.model';
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/Modules/auth/auth.service';
 import {
-  CartReadDto,
   ProductInCartReadDto,
   ProductInCartUpdateDto,
 } from '../Models/cart.model';
@@ -19,13 +16,13 @@ import { environment } from 'src/environments/environment';
 export class CartComponent implements OnInit, OnChanges {
   cartId: string = '';
   productsInCartReadDto: ProductInCartReadDto[] = [];
+  ServerBase = environment.ServerBase;
   productInCartUpdateDto: ProductInCartUpdateDto = {
     id: '',
     cartId: '',
     productId: '',
   };
-  // producttoRead: ProductInCartReadDto|null=null;
-  ServerBase = environment.ServerBase;
+  subTotal=0;
   constructor(
     private productService: ProductsService,
     private router: Router,
@@ -96,7 +93,7 @@ export class CartComponent implements OnInit, OnChanges {
                 });
               },
               error: (err) => {
-                alert(err.error);
+                alert(err.message);
                 console.log(err);
               },
             });
@@ -128,5 +125,19 @@ export class CartComponent implements OnInit, OnChanges {
           console.log(err);
         },
       });
+  }
+
+  updateCart(){
+    this.subTotal=0;
+    this.productsInCartReadDto.forEach(
+      (element) =>
+        (this.subTotal+=
+          element.product.totalPrice)
+    );
+
+  }
+
+  NavigateToCheckOut(){
+    this.router.navigate(['home/checkOut'])
   }
 }

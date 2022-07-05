@@ -5,14 +5,15 @@
    
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
       
-        <form class="d-flex mx-lg-auto">
-          <input class="form-control me-2 searchInput" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn search" style="color: white;" type="submit">      <mat-icon>search</mat-icon>
+        <div class="d-flex mx-lg-auto">
+          <input #search class="form-control me-2 searchInput" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn search" style="color: white;">      <mat-icon (click)="Search(search.value)">search</mat-icon>
           </button>
-        </form>
+        </div>
       </div>
       <button type="button" *ngIf="isAdmin == true " class="btn btn-success m-4" (click)="NavigateToAdmin()">Admin</button>
-      <mat-icon (click)="GoToCart()" class="Logout">add_shopping_cart</mat-icon>
+      <mat-icon class="orderIcon" (click)="GoToOrders()"  *ngIf="isAdmin == false"> local_shipping</mat-icon>
+      <mat-icon (click)="GoToCart()" class="Logout"  *ngIf="isAdmin == false">add_shopping_cart</mat-icon>
       <mat-icon class="Logout" (click)="logOut()" *ngIf="isLoggedIn">exit_to_app</mat-icon>
     </div>
   </nav>

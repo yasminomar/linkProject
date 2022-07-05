@@ -24,7 +24,6 @@ export class AdminService implements CanActivate {
     | UrlTree {
     if (this.auth.isLoggedIn()) {
 
-        debugger;
       const token = this.auth.getToken();
       const tokenInfo = this.auth.getDecodedAccessToken(token!);
         if(tokenInfo["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"] == "Admin"){

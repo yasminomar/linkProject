@@ -1,6 +1,6 @@
 import { CartReadDto, ProductInCartWriteDto } from './../Models/cart.model';
 import { ProductParameters, ProductReadDto } from './../Models/product.model';
-import { Component, OnChanges, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/Modules/auth/auth.service';
 import { environment } from 'src/environments/environment';
@@ -11,9 +11,10 @@ import { ProductsService } from '../ProductService/Products.service';
   templateUrl: './customer.component.html',
   styleUrls: ['./customer.component.css']
 })
-export class CustomerComponent implements OnInit {
+export class CustomerComponent implements OnInit  {
   totalCount=1;
   currentPage=1;
+  
   cart:CartReadDto|null=null;
   products: ProductReadDto[] = [];
   isAdmin : boolean = false;
@@ -32,11 +33,33 @@ export class CustomerComponent implements OnInit {
   
 
   }
+  // ngOnChanges(): void {
+  //   //this.filterWithProductName();
+      
+  // }
 
   GetProducts(page:number){
     var productParameters:ProductParameters={pageNumber:page};
     this.productService.getAllProducts(productParameters).subscribe({
       next: (products) => {
+        this.productsReadDto=products.products.flatMap(p=>p.products);
+        this.totalCount=products.totalCount;
+        this.currentPage=page;
+      },
+      error: (err) => {
+        alert(err.error);
+        console.log(err);
+      },
+    });
+  }
+
+
+
+  GetFilteredProducts(page:number,productName:string){
+    var productParameters:ProductParameters={pageNumber:page};
+    this.productService.getFilteredProducts(productParameters,productName).subscribe({
+      next: (products) => {
+      //  debugger
         this.productsReadDto=products.products.flatMap(p=>p.products);
         this.totalCount=products.totalCount;
         this.currentPage=page;
@@ -63,9 +86,7 @@ export class CustomerComponent implements OnInit {
 
 
   AddToCart(e:any,prod:ProductReadDto){
-    if(prod.isAddToCart==true){
-      return
-    }
+ 
     this.productInCartWriteDto.cartId=this.cart?.id;
     this.productInCartWriteDto.productId=e.id;
     this.productService.AddProductToCart(this.productInCartWriteDto).subscribe({
@@ -77,8 +98,8 @@ export class CustomerComponent implements OnInit {
         console.log(err);
       }
     })
+    
  
-
   }
 
   isProductAdded(product:ProductReadDto):boolean{
@@ -95,5 +116,10 @@ export class CustomerComponent implements OnInit {
         console.log(err);
       }
     });
+  }
+
+
+  filterWithProductName(productName:string){
+    this.GetFilteredProducts(1,productName);
   }
 }

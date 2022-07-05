@@ -1,8 +1,10 @@
-import { ProductPaginationReadDto, ProductReadDto } from './../Models/product.model';
+import { ProductPaginationReadDto, ProductReadDto, ProductWriteDto } from './../Models/product.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Product } from '../Models/product.model';
 import { CartReadDto, ProductInCartReadDto, ProductInCartUpdateDto, ProductInCartWriteDto } from '../Models/cart.model';
+import { OrderHistoryReadDto, OrderReadDto, OrderWriteDto } from '../Models/order.models';
+import { CategoryReadDto } from '../Models/category.models';
+import { VendorReadDto } from '../Models/vendor.models';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +16,13 @@ export class ProductsService {
   getAllProducts(productParameters:any){
     return this.httpClient.post<ProductPaginationReadDto>(this.baseURL+"/Product/sortedProduct",productParameters)
   }
+
+  getFilteredProducts(productParameters:any,productName:string){
+    return this.httpClient.post<ProductPaginationReadDto>(this.baseURL+"/Product/sortedProduct/getFilteredProducts/"+productName,productParameters)
+  }
+
+
+
   getCartByUserId(){
     return this.httpClient.get<CartReadDto>(this.baseURL+"/Cart/CartByUserId")
   }
@@ -40,9 +49,61 @@ export class ProductsService {
 
   }
 
+  getUserId(){
+    return this.httpClient.get<string>(this.baseURL+"/Order/GetUserId")
+
+
+  }
+
+
 
   deleteProductFromCart(id:any){
     return this.httpClient.delete<ProductInCartReadDto>(this.baseURL+"/ProductInCart/"+id)
 
   }
+
+
+  CreateOrder(orderWriteDto:OrderWriteDto){
+    return this.httpClient.post<OrderReadDto>(this.baseURL+"/Order",orderWriteDto)
+  }
+
+  getOrderByCartId(cartId:any){
+    return this.httpClient.get<OrderReadDto>(this.baseURL+"/Order/GetOrderByCartId/"+cartId)
+  }
+
+  DeleteProductInCartByCartId(cartId:any){
+    return this.httpClient.delete<ProductInCartReadDto[]>(this.baseURL+"/ProductInCart/DeleteProductsInCartByCartId/"+cartId)
+  }
+
+  DeleteOrderByCartId(cartId:any){
+    return this.httpClient.delete<OrderReadDto>(this.baseURL+"/Order/DeleteOrderByCartId/"+cartId)
+  }
+
+  UpdateProductQuantity(id:any,quantity:number){
+    return this.httpClient.put<ProductReadDto>(this.baseURL+"/Product/"+id+"/"+quantity,{})
+  }
+  getOrdersByUserId(){
+    return this.httpClient.get<OrderHistoryReadDto[]>(this.baseURL+"/Order/GetOrderHistory")
+
+  }
+
+  getAllCategories(){
+    return this.httpClient.get<CategoryReadDto[]>(this.baseURL+"/Category")
+
+  }
+
+  getAllVendors(){
+    return this.httpClient.get<VendorReadDto[]>(this.baseURL+"/Vendor")
+
+  }
+
+  AddProduct(productWriteDto:FormData){
+    return this.httpClient.post<ProductReadDto>(this.baseURL+"/Product",productWriteDto)
+
+  }
+  deleteProduct(id:string){
+    return this.httpClient.delete<ProductReadDto>(this.baseURL+"/Product/"+id)
+
+  }
+  
 }

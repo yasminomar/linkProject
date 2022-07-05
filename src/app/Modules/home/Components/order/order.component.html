@@ -1,0 +1,48 @@
+<app-header></app-header>
+<div class="container">
+    <div class="row">
+<div class="col-8">
+    <table >
+        <thead class="thead">
+          <tr class="theadTr" >
+            <th scope="col">Product Image</th>
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Total Price</th>
+          </tr>
+        </thead>
+        <tbody >
+          <tr *ngFor="let product of productsInCartReadDto">
+            <td>  <div class="product-image"><img class="card-img-top" width="30px" height="50px" src="{{ ServerBase }}{{ product.product.image}}" /></div></td>
+            <td>{{product.product.englishName}}</td>
+            <td>{{product.product.unitPrice}}</td>
+            <td>{{product.quantity}}</td>
+            <td>{{product.product.totalPrice}}</td>
+          </tr>
+        </tbody>
+      </table>
+</div>  
+<div class="col-4">
+    <table >
+      <thead class="thead">
+        <tr class="theadTr" >
+          <th scope="col" colspan="2" >Order Shippment Info:</th>
+        </tr>
+      </thead>
+      <tbody >
+        <tr >
+          <th>Shipment Address:</th>
+          <td>{{orderReadDto?.shipmentAddress}}</td>
+          </tr>
+          <tr>
+          <th>Payment Method:</th>
+          <td>{{orderReadDto?.paymentMethod}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <button class="buttun" (click)="SubmitOrder()" >Submit Order</button>
+
+</div>
+    </div>
+    </div>

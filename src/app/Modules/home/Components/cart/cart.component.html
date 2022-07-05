@@ -36,21 +36,12 @@
             <tbody >
               <tr >
                 <th>Subtotal:</th>
-                <td></td>
-              </tr>
-              <tr >
-                <th>Shipping:</th>
-                <td></td>
-              </tr>
-              <tr >
-                <th>Total:</th>
-                <td></td>
+                <td>{{this.subTotal}}</td>
               </tr>
             </tbody>
           </table>
-          <button class="buttun">Update Cart</button>
-          <button class="buttun">Check Out</button>
-
+          <button class="buttun" (click)="updateCart()">Update Cart</button>
+          <button class="buttun" (click)="NavigateToCheckOut()">Check Out</button>
       </div>
     </div>
 </div>

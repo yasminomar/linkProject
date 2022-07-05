@@ -1,5 +1,4 @@
-export interface Product {
-  id?: string;
+export interface ProductWriteDto {
   englishName: string;
   arabicName: string;
   description: string;  
@@ -27,17 +26,19 @@ export interface ProductPaginationReadDto {
 
 export interface ProductReadDto {
   id?: string,
-  englishName: string;
-  arabicName: string;  
-  description: string;  
-  unitPrice: number;
-  quantity?: number;
+  englishName: string,
+  arabicName: string,
+  description: string,
+  unitPrice: number,
+  quantity?: number,
   image?: string,
   category:childCategoryReadDto,
   vendor:childVendorReadDto,
   productCount?:number
-  isAddToCart?:boolean;
-  totalPrice:any
+  isAddToCart?:boolean,
+  isEmpty:boolean,
+  totalPrice:any,
+  toggle:number
 
 
 }
@@ -88,3 +89,16 @@ export interface childCategoryReadDto{
 //   isSelected?:boolean
 
 // }
+
+
+export interface ProductUpdateDto {
+  id?: string;
+  englishName: string;
+  arabicName: string;
+  description: string;  
+  unitPrice?: number;
+  quantity?: number;
+  image?: string;
+  categoryId:string,
+  vendorId:string
+}

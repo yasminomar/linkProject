@@ -1,4 +1,3 @@
-import { HomeModule } from './Modules/home/home.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
@@ -11,6 +10,7 @@ import { APP_BASE_HREF } from '@angular/common';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Interceptor } from './Modules/core/interceptore/interceptors.service';
 import {NgxPaginationModule} from 'ngx-pagination'; 
+import { HomeModule } from './Modules/home/home.module';
 
 
 
@@ -27,7 +27,8 @@ import {NgxPaginationModule} from 'ngx-pagination';
     FormsModule,
     CoreModule,
     HomeModule,
-    BrowserAnimationsModule,
+    BrowserAnimationsModule
+
   ],
   providers: [
     {provide: APP_BASE_HREF, useValue: '/'},{provide:HTTP_INTERCEPTORS,useClass:Interceptor,multi:true}
