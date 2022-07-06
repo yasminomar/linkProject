@@ -95,7 +95,7 @@ export class CartComponent implements OnInit, OnChanges {
                 });
               },
               error: (err) => {
-                alert(err.message);
+                alert(err.error.message);
                 console.log(err);
               },
             });
