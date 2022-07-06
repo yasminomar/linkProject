@@ -64,7 +64,7 @@ export class CategoriesControllerComponent implements OnInit {
     this.categoryToEdit=category;    
     this.CategoryForm.patchValue({
       name:category.name,
-      parentCategory:category.parentCategory.name   
+      parentCategory:category.parentCategory.id   
     })
     this.ngxSmartModalService.getModal('openCategoryCreationModal').open();
   }
