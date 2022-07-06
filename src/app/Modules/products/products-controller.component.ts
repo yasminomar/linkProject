@@ -60,9 +60,7 @@ export class ProductsControllerComponent implements OnInit {
     private ngxSmartModalService: NgxSmartModalService
 
   ) {}
-  // ngAfterViewInit(): void {
-  //   console.log(this.input!.nativeElement.value)
-  // }
+
   ngOnInit(): void {
     this.GetProducts(1);
     this.GetCategories();
@@ -204,16 +202,6 @@ export class ProductsControllerComponent implements OnInit {
   
 
   }
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -14,7 +14,7 @@
           </tr>
         </thead>
         <tbody >
-          <tr *ngFor="let product of productsReadDto">
+          <tr *ngFor="let product of productsReadDto | paginate:{itemsPerPage:5,currentPage:currentPage,totalItems:totalCount}">
             <td>  <div class="product-image"><img class="card-img-top" width="30px" height="50px" src="{{ ServerBase }}{{ product.image}}" /></div></td>
             <td>{{product.englishName}}</td>
             <td>{{product.arabicName}}</td>

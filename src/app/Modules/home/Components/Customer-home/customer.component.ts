@@ -33,10 +33,7 @@ export class CustomerComponent implements OnInit  {
   
 
   }
-  // ngOnChanges(): void {
-  //   //this.filterWithProductName();
-      
-  // }
+
 
   GetProducts(page:number){
     var productParameters:ProductParameters={pageNumber:page};
