@@ -112,13 +112,14 @@ export class CategoriesControllerComponent implements OnInit {
       });
     }
     else {
-      this.categoryUpdateDto?.name!=this.categoryToEdit.id;
+      //this.categoryUpdateDto?.name!=this.categoryToEdit.id;
 
     //  this.categoryUpdateDto?.name!=this.CategoryForm.value.name;
      // this.categoryUpdateDto?.parentCategory.id!=this.CategoryForm.value.parentCategory;
 this.categoryUpdateDto={
   ...this.CategoryForm.value,
-  parentCategoryId:this.CategoryForm.value.parentCategory
+  parentCategoryId:this.CategoryForm.value.parentCategory,
+  id:this.categoryToEdit.id
 }
       
       this.productService
