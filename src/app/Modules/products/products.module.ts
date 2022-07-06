@@ -7,10 +7,6 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { MatIconModule } from '@angular/material/icon';
 import { HomeModule } from '../home/home.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HeaderComponent } from '../home/Components/header/header.component';
-//import { HeaderComponent } from '../home/Components/header/header.component';
-
-
 
 @NgModule({
   declarations: [

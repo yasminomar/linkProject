@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CartReadDto, ProductInCartReadDto, ProductInCartUpdateDto, ProductInCartWriteDto } from '../Models/cart.model';
 import { OrderHistoryReadDto, OrderReadDto, OrderWriteDto } from '../Models/order.models';
-import { CategoryReadDto } from '../Models/category.models';
+import { CategoryReadDto, CategoryWriteDto, ParentCategoryReadDto } from '../Models/category.models';
 import { VendorReadDto } from '../Models/vendor.models';
 import { map, Observable } from 'rxjs';
 
@@ -52,17 +52,22 @@ export class ProductsService {
 
   getUserId(){
     return this.httpClient.get<string>(this.baseURL+"/Order/GetUserId")
-
+  }
+  
+  deleteCategory(id:any){
+    return this.httpClient.delete<CategoryReadDto>(this.baseURL+"/Category/"+id)
 
   }
-
-
 
   deleteProductFromCart(id:any){
     return this.httpClient.delete<ProductInCartReadDto>(this.baseURL+"/ProductInCart/"+id)
 
   }
+  
 
+  AddCategory(categoryWriteDto:CategoryWriteDto){
+    return this.httpClient.post<CategoryReadDto>(this.baseURL+"/Category",categoryWriteDto)
+  }
 
   CreateOrder(orderWriteDto:OrderWriteDto){
     return this.httpClient.post<OrderReadDto>(this.baseURL+"/Order",orderWriteDto)
@@ -93,6 +98,15 @@ export class ProductsService {
 
   }
 
+
+
+  getAllParentCategories(){
+    return this.httpClient.get<ParentCategoryReadDto[]>(this.baseURL+"/ParentCategory")
+
+  }
+
+  
+
   getAllVendors(){
     return this.httpClient.get<VendorReadDto[]>(this.baseURL+"/Vendor")
 
@@ -108,10 +122,14 @@ export class ProductsService {
   }
   editProduct(id:string,productToEdit:FormData){
     return this.httpClient.put<ProductReadDto>(this.baseURL+"/Product/"+id,productToEdit)
-
-
   }
 
+
+
+  editCategory(id:string,categoryToEdit:CategoryReadDto){
+    return this.httpClient.put<CategoryReadDto>(this.baseURL+"/Category/"+id,categoryToEdit)
+  }
+  
 
   getImage(image: string): Observable<File> {
     return this.httpClient

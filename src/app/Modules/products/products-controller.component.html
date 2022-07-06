@@ -34,7 +34,7 @@
 <form [formGroup]="ProductForm" (ngSubmit)="AddOrEditProduct()">
   <div>
     <label>English Name</label>
-    <input name="englishName" formControlName="englishName" required="required">
+    <input class="form-control" name="englishName" formControlName="englishName" required="required">
     <div class= "error-message" *ngIf="ProductForm.get('englishName')?.invalid && ProductForm.get('englishName')?.touched">
       <span *ngIf="ProductForm.get('englishName')?.hasError('required')">English Name is required</span>
       <span *ngIf="ProductForm.get('englishName')?.hasError('pattern')" >please enter valid English Name</span>
@@ -44,7 +44,7 @@
 
   <div>
     <label>Arabic Name</label>
-    <input name="arabicName" formControlName="arabicName" required="required">
+    <input class="form-control" name="arabicName" formControlName="arabicName" required="required">
     <div class= "error-message" *ngIf="ProductForm.get('arabicName')?.invalid && ProductForm.get('arabicName')?.touched">
       <span *ngIf="ProductForm.get('arabicName')?.hasError('required')">Arabic Name is required</span>
       <span *ngIf="ProductForm.get('arabicName')?.hasError('pattern')" >please enter valid Arabic Name</span>
@@ -55,7 +55,7 @@
 
   <div>
     <label>Quantity</label>
-    <input name="quantity" type="number" formControlName="quantity" required="required">
+    <input class="form-control" name="quantity" type="number" formControlName="quantity" required="required">
     <div class= "error-message" *ngIf="ProductForm.get('quantity')?.invalid && ProductForm.get('quantity')?.touched">
       <span *ngIf="ProductForm.get('quantity')?.hasError('required')">Quantity is required</span>
       <span *ngIf="ProductForm.get('quantity')?.hasError('max')" >quantity must be less than or = 1000</span>
@@ -69,7 +69,7 @@
 
   <div>
     <label>Price</label>
-    <input name="unitPrice" type="number" formControlName="unitPrice" required="required">
+    <input class="form-control" name="unitPrice" type="number" formControlName="unitPrice" required="required">
     <div class= "error-message" *ngIf="ProductForm.get('unitPrice')?.invalid && ProductForm.get('unitPrice')?.touched">
       <span *ngIf="ProductForm.get('unitPrice')?.hasError('required')">Price is required</span>
       <span *ngIf="ProductForm.get('unitPrice')?.hasError('max')" >price must be less than or = 1000</span>
@@ -81,7 +81,7 @@
 
   <div>
     <label>Product Image</label>
-    <input id="editedImage" name="image" type="file"  >
+    <input class="form-control" id="editedImage" name="image" type="file"  >
     <div class= "error-message" *ngIf="!validateImage()&& ProductForm.get('image')?.touched">
       <span>Image is required</span>
     </div>
@@ -103,7 +103,7 @@
   </select>
 </div>
 
-<button type="submit"></button>
+<button type="submit" class="buttun"> Submit</button>
 </form>
 </ngx-smart-modal>
 

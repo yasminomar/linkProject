@@ -18,13 +18,15 @@ table th{
 
 }
 table{
+    
+    margin: auto;
+    border: 1px solid #EFEFEF;
     margin-top: 150px;
     margin-bottom: 50px;
-    border: 1px solid #EFEFEF;
 
 }
 
-.class="form-controll"{
+.buttun{
     border: none;
 
     font-family: 'Poppins', sans-serif;
@@ -36,4 +38,22 @@ table{
     text-decoration: none;
     margin-left: 10px;
 
+}
+
+.myIcon{
+    color: #F28123;
+    margin-left: 20px;
+
+}
+
+
+.addIcon{
+    color: #F28123;
+    font-size: 50px;
+    margin-left: 35px;
+
+}
+
+.pagi{
+    margin: auto;
 }

@@ -44,7 +44,6 @@ export class ProductsControllerComponent implements OnInit {
       Validators.required,
     ]),
   });
-  @ViewChild('editedImage') input:ElementRef|null=null;
 
   totalCount=1;
   currentPage=1;

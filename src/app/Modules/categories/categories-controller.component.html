@@ -1,0 +1,50 @@
+<app-header></app-header>
+<div >
+    <table >
+        <thead class="thead">
+          <tr class="theadTr" >
+            <th scope="col">Category Name</th>
+            <th scope="col">Parent Category Name</th>
+            <th scope="col">  <mat-icon class="addIcon " (click)="openCategoryCreation()">add</mat-icon ></th>
+          </tr>
+        </thead>
+        <tbody >
+          <tr *ngFor="let category of categoriesReadDto">
+            <td>{{category.name}}</td>
+            <td>{{category.parentCategory.name}}</td>
+            <td><mat-icon class="myIcon"(click)="editCategory($event,category)" >edit</mat-icon> <mat-icon (click)="deleteCategory($event,category.id!)" class="myIcon">delete_forever</mat-icon></td>
+          </tr>
+        </tbody>
+      </table>
+</div>  
+
+
+
+<ngx-smart-modal #openCategoryCreationModal identifier="openCategoryCreationModal">
+<form [formGroup]="CategoryForm" (ngSubmit)="AddOrEditCategory()">
+  <div>
+    <label>Name</label>
+    <input class="form-control" name="name" formControlName="name" required="required">
+    <div class= "error-message" *ngIf="CategoryForm.get('name')?.invalid && CategoryForm.get('name')?.touched">
+      <span *ngIf="CategoryForm.get('name')?.hasError('required')">Name is required</span>
+      <span *ngIf="CategoryForm.get('name')?.hasError('pattern')" >please enter valid  Name</span>
+    </div>
+  </div>
+
+
+
+<div>
+  <label>Parent Category</label>
+  <select name="parentCategory" formControlName="parentCategory"class="form-select form-select-sm"aria-label=".form-select-sm example">
+    <option selected>Select Option</option>
+    <option *ngFor="let parentCategory of parentCategoryReadDto"value="{{ parentCategory.id }}">{{ parentCategory.name }}</option>
+  </select>
+</div>
+
+
+<button type="submit" class="buttun"> Submit</button>
+</form>
+</ngx-smart-modal>
+
+
+

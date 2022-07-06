@@ -2,28 +2,37 @@
 // import { ProductReadDto } from "./product.model";
 
 
-// export interface CartReadDto {
-//   id: string;
-//   products:ProductInCartReadDto[],
-//   ApplicationUser:LoginUserNormalData
-// }
+export interface CategoryWriteDto {
+  name:string,
+  parentCategoryId:string
+}
 
 
 export interface CategoryReadDto {
   id: string,
-  name: string  
+  name: string 
+  parentCategory:ChildParentCategoryReadDto 
 }
 
 
-// export interface OrderWriteDto {
-//   cartId: string|undefined,
-//   ShipmentAddress: string,
-//   paymentMethod:string
-// }
+export interface ChildParentCategoryReadDto {
+  id: string,
+  name: string
+}
+
+
+export interface parentcategoryReadDto {
+  id: string,
+  name: string
+}
 
 
 
 
+export interface ParentCategoryReadDto {
+  id: string,
+  name: string
+}
 // export interface OrderHistoryReadDto {
 //   products: ProductReadDto[],
 //   shippmentAddress: string,
