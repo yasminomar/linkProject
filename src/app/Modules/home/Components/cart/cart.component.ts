@@ -31,7 +31,7 @@ export class CartComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     this.getUserCartId();
-    this.fillUserCart();
+    // this.fillUserCart();
   }
 
   ngOnChanges(): void {}
@@ -56,6 +56,8 @@ export class CartComponent implements OnInit, OnChanges {
     this.productService.getCartByUserId().subscribe({
       next: (cart) => {
         this.cartId = cart.id;
+        this.fillUserCart();
+
       },
       error: (err) => {
         alert(err.error);
