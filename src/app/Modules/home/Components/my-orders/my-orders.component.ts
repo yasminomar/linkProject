@@ -30,6 +30,7 @@ export class MyOrdersComponent implements OnInit {
       next: (orders) => {
         console.log(orders)
         this.orderHistoryReadDto=orders;
+        console.log("yas",this.orderHistoryReadDto);
       },
       error: (err) => {
         alert(err.error);
