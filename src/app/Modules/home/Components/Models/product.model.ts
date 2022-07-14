@@ -14,14 +14,10 @@ export interface ProductParameters{
   pageNumber:number
 }
 
-export interface ProductGroupingOutputReadDto {
-  categoryId: string;
-  categoryName: string;
-  products: ProductReadDto[];
-}
+
 export interface ProductPaginationReadDto {
   totalCount: number;
-  products: ProductGroupingOutputReadDto[];
+  products: ProductReadDto[];
 }
 
 export interface ProductReadDto {

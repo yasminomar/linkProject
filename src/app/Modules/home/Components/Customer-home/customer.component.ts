@@ -40,7 +40,7 @@ export class CustomerComponent implements OnInit  {
     var productParameters:ProductParameters={pageNumber:page};
     this.productService.getAllProducts(productParameters).subscribe({
       next: (products) => {
-        this.productsReadDto=products.products.flatMap(p=>p.products);
+        this.productsReadDto=products.products;
         this.totalCount=products.totalCount;
         this.currentPage=page;
       },
@@ -57,7 +57,7 @@ export class CustomerComponent implements OnInit  {
     var productParameters:ProductParameters={pageNumber:page};
     this.productService.getFilteredProducts(productParameters,productName).subscribe({
       next: (products) => {
-        this.productsReadDto=products.products.flatMap(p=>p.products);
+        this.productsReadDto=products.products;
         console.log("yas", this.productsReadDto);
         this.totalCount= this.productsReadDto.length;
         this.currentPage=page;
