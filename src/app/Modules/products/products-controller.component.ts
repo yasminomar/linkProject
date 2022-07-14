@@ -170,7 +170,7 @@ export class ProductsControllerComponent implements OnInit {
   }
 
   editProduct(event:any,product:ProductReadDto){
-    event.stopPropagation();
+    //event.stopPropagation();
 
     this.productService.getImage(this.ServerBase+product.image).subscribe({
       next:(file)=>{
@@ -210,7 +210,7 @@ export class ProductsControllerComponent implements OnInit {
 
 
   deleteProduct(event:any,id:string){
-    event.stopPropagation();
+    //event.stopPropagation();
     if (confirm('Are you sure you want to delete this Product?!')) {
 
       this.productService.deleteProduct(id).subscribe({
