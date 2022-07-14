@@ -56,7 +56,7 @@ export class CustomerComponent implements OnInit  {
     var productParameters:ProductParameters={pageNumber:page};
     this.productService.getFilteredProducts(productParameters,productName).subscribe({
       next: (products) => {
-      //  debugger
+        console.log("yas",products);
         this.productsReadDto=products.products.flatMap(p=>p.products);
         this.totalCount=products.totalCount;
         this.currentPage=page;
