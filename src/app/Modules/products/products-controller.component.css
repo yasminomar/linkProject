@@ -55,9 +55,7 @@ table{
 }
 
 .pagi{
-    margin: auto;
+    margin-left: 568px;
+
 }
 
-.ngx-pagination {
-    margin-left: 568px;
-}
