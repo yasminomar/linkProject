@@ -12,33 +12,35 @@
         </thead>
         <tbody >
           <tr *ngFor="let order of orderHistoryReadDto">
-            <td ><mat-icon class="count" (click)="openOrderDetailes()">check_circle</mat-icon></td>
+            <td ><mat-icon class="count" (click)="openOrderDetailes(order)">check_circle</mat-icon></td>
             <td>{{order.shippmentAddress}}</td>
             <td>{{order.totalPrice}}</td>
             <td>{{order.paymentMethod}}</td>
-            <ngx-smart-modal #openOrderDetailesModal identifier="openOrderDetailesModal">
-              <table >
-                <thead class="thead">
-                  <tr class="theadTr" >
-                    <th scope="col">Product Image</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Price</th>
-                  </tr>
-                </thead>
-                <tbody >
-                  <tr *ngFor="let product of order.products">
-                    <td>  <div class="product-image"><img class="card-img-top" width="30px" height="50px" src="{{ ServerBase }}{{ product.image}}" /></div></td>
-                    <td>{{product.englishName}}</td>
-                    <td>{{product.unitPrice}}</td>
-                  </tr>
-                </tbody>
-              </table>
 
-            </ngx-smart-modal>
           </tr>
         </tbody>
       </table>
 
       
 </div>    
+
+<ngx-smart-modal #openOrderDetailesModal identifier="openOrderDetailesModal">
+  <table >
+    <thead class="thead">
+      <tr class="theadTr" >
+        <th scope="col">Product Image</th>
+        <th scope="col">Name</th>
+        <th scope="col">Price</th>
+      </tr>
+    </thead>
+    <tbody >
+      <tr *ngFor="let product of ordertoShow?.products">
+        <td>  <div class="product-image"><img class="card-img-top" width="30px" height="50px" src="{{ ServerBase }}{{ product.image}}" /></div></td>
+        <td>{{product.englishName}}</td>
+        <td>{{product.unitPrice}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+</ngx-smart-modal>
 

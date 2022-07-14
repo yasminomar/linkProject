@@ -17,6 +17,7 @@ export class MyOrdersComponent implements OnInit {
   cartId: string = '';
   counter=1;
   orderHistoryReadDto:OrderHistoryReadDto[]=[];
+  ordertoShow:OrderHistoryReadDto|null=null;
   ServerBase = environment.ServerBase;
 
   constructor(private productService: ProductsService,private router: Router,private auth: AuthService,private ngxSmartModalService: NgxSmartModalService){ }
@@ -51,8 +52,9 @@ export class MyOrdersComponent implements OnInit {
   }
 
 
-  openOrderDetailes(){
+  openOrderDetailes(order:OrderHistoryReadDto){
     this.ngxSmartModalService.getModal('openOrderDetailesModal').open();
+    this.ordertoShow=order;
   }
   
 }
