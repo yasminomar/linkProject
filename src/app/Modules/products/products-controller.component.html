@@ -22,7 +22,7 @@
             <td>{{product.vendor.name}}</td>
             <td>{{product.quantity}}</td>
             <td>{{product.unitPrice}}</td>
-            <td><mat-icon class="myIcon"(click)="editProduct($event,product)" >edit</mat-icon> <mat-icon (click)="deleteProduct($event,product.id!)" class="myIcon">delete_forever</mat-icon></td>
+            <td><mat-icon (click)="editProduct($event,product)"  class="myIcon" >edit</mat-icon> <mat-icon (click)="deleteProduct($event,product.id!)" class="myIcon">delete_forever</mat-icon></td>
           </tr>
         </tbody>
       </table>
