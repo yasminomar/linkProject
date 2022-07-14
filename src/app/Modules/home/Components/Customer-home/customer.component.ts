@@ -29,7 +29,8 @@ export class CustomerComponent implements OnInit  {
 
   ngOnInit(): void {
     this.fillUserCart();
-    this.GetProducts(1);
+    this.GetProducts(this.currentPage);
+
   
 
   }
@@ -117,6 +118,6 @@ export class CustomerComponent implements OnInit  {
 
 
   filterWithProductName(productName:string){
-    this.GetFilteredProducts(1,productName);
+    this.GetFilteredProducts(this.currentPage,productName);
   }
 }
