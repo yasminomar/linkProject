@@ -71,7 +71,7 @@ export class ProductsControllerComponent implements OnInit {
     var productParameters:ProductParameters={pageNumber:page};
     this.productService.getAllProducts(productParameters).subscribe({
       next: (products) => {
-        this.productsReadDto=products.products.flatMap(p=>p.products);
+        this.productsReadDto=products.products;
         this.totalCount=products.totalCount;
         this.currentPage=page;
       },
