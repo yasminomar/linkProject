@@ -16,7 +16,7 @@ export class CustomerComponent implements OnInit  {
   currentPage=1;
   
   cart:CartReadDto|null=null;
-  products: ProductReadDto[] = [];
+  //products: ProductReadDto[] = [];
   isAdmin : boolean = false;
   productsReadDto: ProductReadDto[] = [];
   ServerBase = environment.ServerBase;
@@ -50,29 +50,14 @@ export class CustomerComponent implements OnInit  {
 
 
 
-  // GetFilteredProducts(page:number,productName:string){
-  //   var productParameters:ProductParameters={pageNumber:page};
-  //   //this.productService.getFilteredProducts(productParameters,productName).subscribe({
-  //     this.productService.getAllProducts(productParameters).subscribe({
-  //     next: (products) => {
-  //       this.productsReadDto=products.products;
-  //       this.productsReadDto=this.productsReadDto.filter(p=>p.quantity!>0&&p.englishName.includes(productName))
-  //       this.totalCount= this.productsReadDto.length;
-  //       this.currentPage=page;
-  //     },
-  //     error: (err) => {
-  //       alert(err.error);
-  //       console.log(err);
-  //     },
+
+
+
+  // GetDataToSendToBack() {
+  //   return this.productsReadDto.map((p) => {
+  //     return { id: p.id, productCount: p.productCount };
   //   });
   // }
-
-
-  GetDataToSendToBack() {
-    return this.productsReadDto.map((p) => {
-      return { id: p.id, productCount: p.productCount };
-    });
-  }
 
   logout(){
     localStorage.clear();
