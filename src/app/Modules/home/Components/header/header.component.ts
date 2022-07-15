@@ -11,6 +11,7 @@ import { ProductsService } from '../ProductService/Products.service';
 export class HeaderComponent implements OnInit {
   isLoggedIn:boolean=false;
   isAdmin : boolean = false;
+  showSearch: boolean = false;
   searchValue='';
   @Output() searchValueChanged:EventEmitter<string>;
 

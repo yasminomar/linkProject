@@ -16,7 +16,6 @@ export class CustomerComponent implements OnInit  {
   currentPage=1;
   
   cart:CartReadDto|null=null;
-  //products: ProductReadDto[] = [];
   isAdmin : boolean = false;
   productsReadDto: ProductReadDto[] = [];
   ServerBase = environment.ServerBase;
@@ -48,17 +47,6 @@ export class CustomerComponent implements OnInit  {
     });
   }
 
-
-
-
-
-
-  // GetDataToSendToBack() {
-  //   return this.productsReadDto.map((p) => {
-  //     return { id: p.id, productCount: p.productCount };
-  //   });
-  // }
-
   logout(){
     localStorage.clear();
     this.router.navigate(['/auth/login']);
@@ -69,7 +57,6 @@ export class CustomerComponent implements OnInit  {
   AddToCart(e:any,prod:ProductReadDto){
  
     this.productInCartWriteDto.cartId=this.cart?.id;
-    console.log(e.id)
     this.productInCartWriteDto.productId=e.id;
     this.productService.AddProductToCart(this.productInCartWriteDto).subscribe({
       next:(p)=>{
@@ -80,8 +67,6 @@ export class CustomerComponent implements OnInit  {
         console.log(err);
       }
     })
-    
- 
   }
 
   isProductAdded(product:ProductReadDto):boolean{
@@ -92,7 +77,6 @@ export class CustomerComponent implements OnInit  {
     this.productService.getCartByUserId().subscribe({
       next:(cart)=>{
         this.cart=cart;
-
       },
       error: (err) => {
         alert(err.error);
@@ -100,7 +84,6 @@ export class CustomerComponent implements OnInit  {
       }
     });
   }
-
 
   filterWithProductName(productName:string){
     this.productService.getAllProductsToHomePage().subscribe({
