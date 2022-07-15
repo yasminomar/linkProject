@@ -4,6 +4,13 @@
   "newProjectRoot": "projects",
   "projects": {
     "linkProject": {
+      "i18n": {
+        "sourceLocale": "en-US",
+        "locales": {
+          "ar-EG": "src/locale/messages.ar.xlf"
+        }
+      },
+
       "projectType": "application",
       "schematics": {
         "@schematics/angular:application": {
@@ -17,6 +24,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "localize": ["ar-EG"],
             "outputPath": "dist/link-project",
             "index": "src/index.html",
             "main": "src/main.ts",
