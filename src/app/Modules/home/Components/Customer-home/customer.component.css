@@ -48,7 +48,8 @@ a.disabled{
     margin-bottom: 55px;
 }
 .searchInput{
-    position: absolute;
+    width: 197px;
+    margin-top: 5px;
 }
 
 .search{
