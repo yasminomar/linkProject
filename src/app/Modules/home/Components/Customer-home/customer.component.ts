@@ -59,7 +59,7 @@ export class CustomerComponent implements OnInit  {
       this.productService.getAllProducts(productParameters).subscribe({
       next: (products) => {
         this.productsReadDto=products.products;
-        this.productsReadDto=this.productsReadDto.filter(p=>p.englishName==productName)
+        this.productsReadDto=this.productsReadDto.filter(p=>p.quantity!>0&&p.englishName.includes(productName))
         this.totalCount= this.productsReadDto.length;
         this.currentPage=page;
       },
