@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/Modules/auth/auth.service';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ProductsService } from '../ProductService/Products.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { ProductsService } from '../ProductService/Products.service';
 export class HeaderComponent implements OnInit {
   isLoggedIn:boolean=false;
   isAdmin : boolean = false;
-  showSearch: boolean = false;
+  @Input() showSearch: boolean = false;
   searchValue='';
   @Output() searchValueChanged:EventEmitter<string>;
 
