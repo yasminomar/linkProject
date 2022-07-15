@@ -30,6 +30,7 @@ export interface OrderWriteDto {
 
 
 export interface OrderHistoryReadDto {
+  id: string|undefined,
   products: ProductReadDto[],
   shippmentAddress: string,
   paymentMethod:string,
