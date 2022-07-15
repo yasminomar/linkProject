@@ -18,9 +18,10 @@ table th{
 
 }
 .basetable{
-    margin: 280px;
+    margin-top: 150px;
+    margin-bottom: 50px;
+    margin-right: 390px;
     border: 1px solid #EFEFEF;
-
 }
 .modaltable{
 
