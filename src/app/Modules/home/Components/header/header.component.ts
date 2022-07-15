@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/Modules/auth/auth.service';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, OnChanges, SimpleChanges } from '@angular/core';
 import { ProductsService } from '../ProductService/Products.service';
 
 @Component({
@@ -8,7 +8,7 @@ import { ProductsService } from '../ProductService/Products.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements  OnChanges {
   isLoggedIn:boolean=false;
   isAdmin : boolean = false;
   @Input() showSearch: boolean = false;
@@ -17,13 +17,19 @@ export class HeaderComponent implements OnInit {
 
   constructor(private productService: ProductsService,private auth: AuthService,private authService :AuthService,private router:Router) { 
     this.searchValueChanged=new EventEmitter<string>();
+    this.isLoggedIn=this.authService.isLoggedIn()
+    this.CheckAdmin();
+  }
+  ngOnChanges() {
+   this.ableToSearch();
   }
 
-  ngOnInit(): void {
-this.isLoggedIn=this.authService.isLoggedIn()
-this.CheckAdmin();
 
+  ableToSearch():boolean{
+    return this.showSearch;
   }
+
+
   logOut(){
     this.authService.logout();
     this.isLoggedIn=false;
