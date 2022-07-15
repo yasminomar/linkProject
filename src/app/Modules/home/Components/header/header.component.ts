@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/Modules/auth/auth.service';
-import { Component, EventEmitter, Input, OnInit, Output, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ProductsService } from '../ProductService/Products.service';
 
 @Component({
@@ -8,28 +8,21 @@ import { ProductsService } from '../ProductService/Products.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements  OnChanges {
+export class HeaderComponent implements OnInit {
   isLoggedIn:boolean=false;
   isAdmin : boolean = false;
-  @Input() showSearch: boolean = false;
   searchValue='';
   @Output() searchValueChanged:EventEmitter<string>;
 
   constructor(private productService: ProductsService,private auth: AuthService,private authService :AuthService,private router:Router) { 
     this.searchValueChanged=new EventEmitter<string>();
-    this.isLoggedIn=this.authService.isLoggedIn()
-    this.CheckAdmin();
-  }
-  ngOnChanges() {
-   this.ableToSearch();
   }
 
+  ngOnInit(): void {
+this.isLoggedIn=this.authService.isLoggedIn()
+this.CheckAdmin();
 
-  ableToSearch():boolean{
-    return this.showSearch;
   }
-
-
   logOut(){
     this.authService.logout();
     this.isLoggedIn=false;
@@ -75,10 +68,5 @@ export class HeaderComponent implements  OnChanges {
     }
   }
 
-  Search(productName:string){
-
-    this.searchValue=productName;
-    this.searchValueChanged.emit(this.searchValue);
-  }
 
 }
