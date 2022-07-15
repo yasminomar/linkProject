@@ -3,25 +3,25 @@
     <table >
         <thead class="thead">
           <tr class="theadTr" >
-            <th scope="col">Product Image</th>
-            <th scope="col">English Name</th>
-            <th scope="col">Arabic Name</th>
-            <th scope="col">Product Category</th>
-            <th scope="col">Vendor</th>
-            <th scope="col">Quantity</th>
-            <th scope="col">Price</th>
-            <th scope="col">  <mat-icon class="addIcon " (click)="openProductCreation()">add</mat-icon >            </th>
+            <th scope="col" i18n>Product Image</th>
+            <th scope="col" i18n>English Name</th>
+            <th scope="col" i18n>Arabic Name</th>
+            <th scope="col" i18n>Product Category</th>
+            <th scope="col" i18n>Vendor</th>
+            <th scope="col" i18n>Quantity</th>
+            <th scope="col" i18n>Price</th>
+            <th scope="col" i18n>  <mat-icon class="addIcon " (click)="openProductCreation()">add</mat-icon >            </th>
           </tr>
         </thead>
         <tbody >
           <tr *ngFor="let product of productsReadDto | paginate:{itemsPerPage:10,currentPage:currentPage,totalItems:totalCount}">
             <td>  <div class="product-image"><img class="card-img-top" width="30px" height="50px" src="{{ ServerBase }}{{ product.image}}" /></div></td>
             <td>{{product.englishName}}</td>
-            <td>{{product.arabicName}}</td>
-            <td>{{product.category.name}}</td>
-            <td>{{product.vendor.name}}</td>
-            <td>{{product.quantity}}</td>
-            <td>{{product.unitPrice}}</td>
+            <td i18n>{{product.arabicName}}</td>
+            <td i18n>{{product.category.name}}</td>
+            <td i18n>{{product.vendor.name}}</td>
+            <td i18n>{{product.quantity}}</td>
+            <td i18n>{{product.unitPrice}}</td>
             <td><mat-icon (click)="editProduct($event,product)"  class="myIcon" >edit</mat-icon> <mat-icon (click)="deleteProduct($event,product.id!)" class="myIcon">delete_forever</mat-icon></td>
           </tr>
         </tbody>
@@ -33,33 +33,33 @@
 <ngx-smart-modal #openProductCreationModal identifier="openProductCreationModal">
 <form [formGroup]="ProductForm" (ngSubmit)="AddOrEditProduct()">
   <div>
-    <label>English Name</label>
+    <label i18n>English Name</label>
     <input class="form-control" name="englishName" formControlName="englishName" required="required">
     <div class= "error-message" *ngIf="ProductForm.get('englishName')?.invalid && ProductForm.get('englishName')?.touched">
-      <span *ngIf="ProductForm.get('englishName')?.hasError('required')">English Name is required</span>
-      <span *ngIf="ProductForm.get('englishName')?.hasError('pattern')" >please enter valid English Name</span>
+      <span *ngIf="ProductForm.get('englishName')?.hasError('required')" i18n>English Name is required</span>
+      <span *ngIf="ProductForm.get('englishName')?.hasError('pattern')" i18n>please enter valid English Name</span>
     </div>
   </div>
 
 
   <div>
-    <label>Arabic Name</label>
+    <label i18n>Arabic Name</label>
     <input class="form-control" name="arabicName" formControlName="arabicName" required="required">
     <div class= "error-message" *ngIf="ProductForm.get('arabicName')?.invalid && ProductForm.get('arabicName')?.touched">
-      <span *ngIf="ProductForm.get('arabicName')?.hasError('required')">Arabic Name is required</span>
-      <span *ngIf="ProductForm.get('arabicName')?.hasError('pattern')" >please enter valid Arabic Name</span>
+      <span *ngIf="ProductForm.get('arabicName')?.hasError('required')" i18n>Arabic Name is required</span>
+      <span *ngIf="ProductForm.get('arabicName')?.hasError('pattern')" i18n>please enter valid Arabic Name</span>
     </div>
   </div>
 
 
 
   <div>
-    <label>Quantity</label>
+    <label i18n>Quantity</label>
     <input class="form-control" name="quantity" type="number" formControlName="quantity" required="required">
     <div class= "error-message" *ngIf="ProductForm.get('quantity')?.invalid && ProductForm.get('quantity')?.touched">
-      <span *ngIf="ProductForm.get('quantity')?.hasError('required')">Quantity is required</span>
-      <span *ngIf="ProductForm.get('quantity')?.hasError('max')" >quantity must be less than or = 1000</span>
-      <span *ngIf="ProductForm.get('quantity')?.hasError('min')" >quantity must be more than or = 1</span>
+      <span *ngIf="ProductForm.get('quantity')?.hasError('required')" i18n>Quantity is required</span>
+      <span *ngIf="ProductForm.get('quantity')?.hasError('max')" i18n>quantity must be less than or = 1000</span>
+      <span *ngIf="ProductForm.get('quantity')?.hasError('min')" i18n>quantity must be more than or = 1</span>
 
     </div>
   </div>
@@ -68,45 +68,45 @@
 
 
   <div>
-    <label>Price</label>
+    <label i18n>Price</label>
     <input class="form-control" name="unitPrice" type="number" formControlName="unitPrice" required="required">
     <div class= "error-message" *ngIf="ProductForm.get('unitPrice')?.invalid && ProductForm.get('unitPrice')?.touched">
-      <span *ngIf="ProductForm.get('unitPrice')?.hasError('required')">Price is required</span>
-      <span *ngIf="ProductForm.get('unitPrice')?.hasError('max')" >price must be less than or = 1000</span>
-      <span *ngIf="ProductForm.get('unitPrice')?.hasError('min')" >price must be more than or = 1</span>
+      <span *ngIf="ProductForm.get('unitPrice')?.hasError('required')" i18n>Price is required</span>
+      <span *ngIf="ProductForm.get('unitPrice')?.hasError('max')" i18n >price must be less than or = 1000</span>
+      <span *ngIf="ProductForm.get('unitPrice')?.hasError('min')" i18n>price must be more than or = 1</span>
 
     </div>
   </div>
 
 
   <div>
-    <label>Product Image</label>
+    <label i18n>Product Image</label>
     <input class="form-control" id="editedImage" name="image" type="file"  >
     <div class= "error-message" *ngIf="!validateImage()&& ProductForm.get('image')?.touched">
-      <span>Image is required</span>
+      <span i18n>Image is required</span>
     </div>
   </div>
 
 <div>
-  <label>Product Category</label>
+  <label i18n>Product Category</label>
   <select name="categoryId" formControlName="categoryId"class="form-select form-select-sm"aria-label=".form-select-sm example">
-    <option selected>Select Option</option>
-    <option *ngFor="let category of categoryReadDto"value="{{ category.id }}">{{ category.name }}</option>
+    <option selected i18n>Select Option</option>
+    <option *ngFor="let category of categoryReadDto"value="{{ category.id }}" i18n>{{ category.name }}</option>
   </select>
 </div>
 
 <div>
-  <label>Vendor</label>
+  <label i18n>Vendor</label>
   <select name="vendorId" formControlName="vendorId"class="form-select form-select-sm"aria-label=".form-select-sm example">
-    <option selected>Select Option</option>
-    <option *ngFor="let vendor of vendorReadDto"value="{{ vendor.id }}">{{ vendor.name }}</option>
+    <option selected i18n>Select Option</option>
+    <option *ngFor="let vendor of vendorReadDto"value="{{ vendor.id }}" i18n>{{ vendor.name }}</option>
   </select>
 </div>
 
-<button type="submit" class="buttun"> Submit</button>
+<button type="submit" class="buttun" i18n> Submit</button>
 </form>
 </ngx-smart-modal>
 
 
-<pagination-controls class="pagi"(pageChange)="GetProducts($event)"></pagination-controls>
+<pagination-controls class="pagi"(pageChange)="GetProducts($event)" i18n></pagination-controls>
 

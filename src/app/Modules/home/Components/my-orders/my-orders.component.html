@@ -5,17 +5,17 @@
         <thead class="thead">
           <tr class="theadTr" >
             <th scope="col" ></th>
-            <th scope="col">Order Shippment Address</th>
-            <th scope="col">Total Price</th>
-            <th scope="col">Payment Method</th>
+            <th scope="col" i18n>Order Shippment Address</th>
+            <th scope="col" i18n>Total Price</th>
+            <th scope="col" i18n>Payment Method</th>
           </tr>
         </thead>
         <tbody >
           <tr *ngFor="let order of orderHistoryReadDto">
             <td ><mat-icon class="count" (click)="openOrderDetailes(order)">check_circle</mat-icon></td>
-            <td>{{order.shippmentAddress}}</td>
-            <td>{{order.totalPrice}}</td>
-            <td>{{order.paymentMethod}}</td>
+            <td i18n>{{order.shippmentAddress}}</td>
+            <td i18n>{{order.totalPrice}}</td>
+            <td i18n>{{order.paymentMethod}}</td>
 
           </tr>
         </tbody>
@@ -28,16 +28,16 @@
   <table class="modaltable" >
     <thead class="thead">
       <tr class="theadTr" >
-        <th scope="col">Product Image</th>
-        <th scope="col">Name</th>
-        <th scope="col">Price</th>
+        <th scope="col" i18n>Product Image</th>
+        <th scope="col" i18n>Name</th>
+        <th scope="col" i18n>Price</th>
       </tr>
     </thead>
     <tbody >
       <tr *ngFor="let product of ordertoShow?.products">
         <td>  <div class="product-image"><img class="card-img-top" width="30px" height="50px" src="{{ ServerBase }}{{ product.image}}" /></div></td>
-        <td>{{product.englishName}}</td>
-        <td>{{product.unitPrice}}</td>
+        <td i18n>{{product.englishName}}</td>
+        <td i18n>{{product.unitPrice}}</td>
       </tr>
     </tbody>
   </table>

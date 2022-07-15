@@ -1,7 +1,7 @@
   <div class="d-flex flex-column align-content-end" >
 	<div class="app-auth-body mx-auto">	
 		<div class="app-auth-branding mb-4"><a class="app-logo" href="index.html"><img class="logo-icon me-2" src="../../../../../assets/images/logo.png" alt="logo"></a></div>
-		<h2 class="auth-heading text-center mb-5" style="font-size: 40px;font-weight: 700;color: #374B56;">Register</h2>
+		<h2 i18n class="auth-heading text-center mb-5" style="font-size: 40px;font-weight: 700;color: #374B56;">Register</h2>
 		<div class="auth-form-container text-start">
 			<div class="auth-form-container text-start mx-auto">
 				<form
@@ -15,6 +15,7 @@
 					  name="signup-name"
 					  type="text"
 					  class="form-control signup-name"
+					  i18n-placeholder
 					  placeholder="Full name"
 					  formControlName="username"
 					/>
@@ -25,7 +26,7 @@
 						registerForm.get('username')?.touched
 					  "
 					>
-					  <span *ngIf="registerForm.get('username')?.hasError('required')"
+					  <span *ngIf="registerForm.get('username')?.hasError('required')" i18n
 						>Name is required
 					  </span>
 					</div>
@@ -36,6 +37,7 @@
 					  name="signup-email"
 					  type="email"
 					  class="form-control signup-email"
+					  i18n-placeholder
 					  placeholder="Email"
 					  formControlName="email"
 					/>
@@ -46,10 +48,10 @@
 						registerForm.get('email')?.touched
 					  "
 					>
-					  <span *ngIf="registerForm.get('email')?.hasError('required')"
+					  <span *ngIf="registerForm.get('email')?.hasError('required')"i18n
 						>Email is required
 					  </span>
-					  <span *ngIf="registerForm.get('email')?.hasError('pattern')"
+					  <span *ngIf="registerForm.get('email')?.hasError('pattern')"i18n
 						>please enter valid email</span
 					  >
 					</div>
@@ -60,6 +62,7 @@
 					  name="signup-password"
 					  type="password"
 					  class="form-control signup-password"
+					  i18n-placeholder
 					  placeholder="Create a password"
 					  formControlName="password"
 					/>
@@ -70,26 +73,26 @@
 						registerForm.get('password')?.touched
 					  "
 					>
-					  <span *ngIf="registerForm.get('password')?.hasError('required')"
+					  <span *ngIf="registerForm.get('password')?.hasError('required')"i18n
 						>Password is required</span
 					  >
 					  <span
-						*ngIf="registerForm.get('password')?.hasError('minlength')"
-						>Password must be 6 digits</span
+						*ngIf="registerForm.get('password')?.hasError('minlength')"i18n
+						>Password must be 8 digits</span
 					  >
 					</div>
 				  </div>
 		  
 				  <div class="text-center">
-					<button type="submit" class="btn app-btn-primary w-100 theme-btn mx-auto" style="background-color:#374B56; color: #fff;" [disabled]="!registerForm.valid">
+					<button type="submit" class="btn app-btn-primary w-100 theme-btn mx-auto" style="background-color:#374B56; color: #fff;" [disabled]="!registerForm.valid" i18n>
 					  Sign Up
 					</button>
 				  </div>
 				</form>
 			
-				<div class="auth-option text-center pt-5">
+				<div class="auth-option text-center pt-5"i18n>
 					Already have an account?
-					<a class="text-link" [routerLink]="'/auth/login'">Log in</a>
+					<a class="text-link" [routerLink]="'/auth/login'" >Log in</a>
 				  </div>
 		</div><!--//auth-form-container-->	
 

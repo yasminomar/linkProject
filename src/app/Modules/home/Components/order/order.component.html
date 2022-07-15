@@ -5,20 +5,20 @@
     <table >
         <thead class="thead">
           <tr class="theadTr" >
-            <th scope="col">Product Image</th>
-            <th scope="col">Name</th>
-            <th scope="col">Price</th>
-            <th scope="col">Quantity</th>
-            <th scope="col">Total Price</th>
+            <th scope="col" i18n>Product Image</th>
+            <th scope="col" i18n>Name</th>
+            <th scope="col" i18n>Price</th>
+            <th scope="col" i18n>Quantity</th>
+            <th scope="col" i18n>Total Price</th>
           </tr>
         </thead>
         <tbody >
           <tr *ngFor="let product of productsInCartReadDto">
             <td>  <div class="product-image"><img class="card-img-top" width="30px" height="50px" src="{{ ServerBase }}{{ product.product.image}}" /></div></td>
-            <td>{{product.product.englishName}}</td>
-            <td>{{product.product.unitPrice}}</td>
-            <td>{{product.quantity}}</td>
-            <td>{{product.product.totalPrice}}</td>
+            <td i18n>{{product.product.englishName}}</td>
+            <td i18n>{{product.product.unitPrice}}</td>
+            <td i18n>{{product.quantity}}</td>
+            <td i18n>{{product.product.totalPrice}}</td>
           </tr>
         </tbody>
       </table>
@@ -27,21 +27,21 @@
     <table >
       <thead class="thead">
         <tr class="theadTr" >
-          <th scope="col" colspan="2" >Order Shippment Info:</th>
+          <th scope="col" colspan="2" i18n>Order Shippment Info:</th>
         </tr>
       </thead>
       <tbody >
         <tr >
-          <th>Shipment Address:</th>
-          <td>{{orderReadDto?.shipmentAddress}}</td>
+          <th i18n>Shipment Address:</th>
+          <td i18n>{{orderReadDto?.shipmentAddress}}</td>
           </tr>
           <tr>
-          <th>Payment Method:</th>
-          <td>{{orderReadDto?.paymentMethod}}</td>
+          <th i18n>Payment Method:</th>
+          <td i18n>{{orderReadDto?.paymentMethod}}</td>
         </tr>
       </tbody>
     </table>
-    <button class="buttun" (click)="SubmitOrder()" >Submit Order</button>
+    <button class="buttun" (click)="SubmitOrder()" i18n>Submit Order</button>
 
 </div>
     </div>

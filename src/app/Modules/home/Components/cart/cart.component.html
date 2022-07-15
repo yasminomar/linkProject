@@ -29,19 +29,19 @@
           <table >
             <thead class="thead">
               <tr class="theadTr" >
-                <th scope="col" >Total</th>
-                <th scope="col">Price Image</th>
+                <th scope="col" i18n>Total</th>
+                <th scope="col" i18n>Price</th>
               </tr>
             </thead>
             <tbody >
               <tr >
-                <th>Subtotal:</th>
-                <td>{{this.subTotal}}</td>
+                <th i18n>Subtotal:</th>
+                <td i18n>{{this.subTotal}}</td>
               </tr>
             </tbody>
           </table>
-          <button class="buttun" (click)="updateCart()">Update Cart</button>
-          <button class="buttun" (click)="NavigateToCheckOut()">Check Out</button>
+          <button class="buttun" (click)="updateCart()" i18n>Update Cart</button>
+          <button class="buttun" (click)="NavigateToCheckOut()" i18n>Check Out</button>
       </div>
     </div>
 </div>

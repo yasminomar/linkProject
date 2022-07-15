@@ -7,7 +7,7 @@
       
       
       </div>
-      <button type="button" *ngIf="isAdmin == true " class="btn btn-success m-4" (click)="NavigateToAdmin()">Admin</button>
+      <button type="button" *ngIf="isAdmin == true " class="btn btn-success m-4" (click)="NavigateToAdmin()" i18n>Admin</button>
       <mat-icon class="orderIcon" (click)="GoToOrders()"  *ngIf="isAdmin == false"> local_shipping</mat-icon>
       <mat-icon (click)="GoToCart()" class="Logout"  *ngIf="isAdmin == false">add_shopping_cart</mat-icon>
       <mat-icon class="Logout" (click)="logOut()" *ngIf="isLoggedIn">exit_to_app</mat-icon>
