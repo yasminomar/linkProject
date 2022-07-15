@@ -47,5 +47,7 @@ a.disabled{
 .prodContainer{
     margin-bottom: 55px;
 }
-
+.searchInput{
+    position: relative;
+}
 

@@ -1,4 +1,9 @@
-<app-header (searchValueChanged)="filterWithProductName($event)" [showSearch]="true"></app-header>
+<app-header></app-header>
+<div class="d-flex mx-lg-auto searchInput">
+  <input #search class="form-control me-2 searchInput" type="search" placeholder="Search" aria-label="Search">
+  <button class="btn search" style="color: white;">      <mat-icon (click)="filterWithProductName(search.value)">search</mat-icon>
+  </button>
+</div>
 
 <div class="container prodContainer">
     <div class="row">

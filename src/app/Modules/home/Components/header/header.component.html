@@ -5,11 +5,7 @@
    
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
       
-        <div class="d-flex mx-lg-auto"      [class.disabled]="ableToSearch()">
-          <input #search class="form-control me-2 searchInput" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn search" style="color: white;">      <mat-icon (click)="Search(search.value)">search</mat-icon>
-          </button>
-        </div>
+      
       </div>
       <button type="button" *ngIf="isAdmin == true " class="btn btn-success m-4" (click)="NavigateToAdmin()">Admin</button>
       <mat-icon class="orderIcon" (click)="GoToOrders()"  *ngIf="isAdmin == false"> local_shipping</mat-icon>
