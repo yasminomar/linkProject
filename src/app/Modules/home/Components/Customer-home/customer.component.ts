@@ -69,10 +69,11 @@ export class CustomerComponent implements OnInit  {
   AddToCart(e:any,prod:ProductReadDto){
  
     this.productInCartWriteDto.cartId=this.cart?.id;
+    console.log(e.id)
     this.productInCartWriteDto.productId=e.id;
     this.productService.AddProductToCart(this.productInCartWriteDto).subscribe({
       next:(p)=>{
-        this.fillUserCart();
+       // this.fillUserCart();
       },
       error: (err) => {
         alert(err.error);
@@ -91,6 +92,8 @@ export class CustomerComponent implements OnInit  {
     this.productService.getCartByUserId().subscribe({
       next:(cart)=>{
         this.cart=cart;
+        console.log(cart)
+
       },
       error: (err) => {
         alert(err.error);
