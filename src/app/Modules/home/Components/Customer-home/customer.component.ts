@@ -29,20 +29,30 @@ export class CustomerComponent implements OnInit  {
 
   ngOnInit(): void {
     this.fillUserCart();
-    this.GetProducts(this.currentPage);
+    this.GetProducts(this.currentPage,'');
 
   
 
   }
 
 
-  GetProducts(page:number){
+  GetProducts(page:number,productName:string){
     var productParameters:ProductParameters={pageNumber:page};
     this.productService.getAllProducts(productParameters).subscribe({
       next: (products) => {
-        this.productsReadDto=products.products;
-        this.totalCount=products.totalCount;
-        this.currentPage=page;
+        if(productName==''){
+          this.productsReadDto=products.products;
+          this.totalCount=products.totalCount;
+          this.currentPage=page;
+        }
+        else{
+          this.productsReadDto=products.products;
+          this.productsReadDto=this.productsReadDto.filter(p=>p.quantity!>0&&p.englishName.includes(productName))
+          this.totalCount= this.productsReadDto.length;
+          this.currentPage=page;
+
+        }
+ 
       },
       error: (err) => {
         alert(err.error);
@@ -53,22 +63,22 @@ export class CustomerComponent implements OnInit  {
 
 
 
-  GetFilteredProducts(page:number,productName:string){
-    var productParameters:ProductParameters={pageNumber:page};
-    //this.productService.getFilteredProducts(productParameters,productName).subscribe({
-      this.productService.getAllProducts(productParameters).subscribe({
-      next: (products) => {
-        this.productsReadDto=products.products;
-        this.productsReadDto=this.productsReadDto.filter(p=>p.quantity!>0&&p.englishName.includes(productName))
-        this.totalCount= this.productsReadDto.length;
-        this.currentPage=page;
-      },
-      error: (err) => {
-        alert(err.error);
-        console.log(err);
-      },
-    });
-  }
+  // GetFilteredProducts(page:number,productName:string){
+  //   var productParameters:ProductParameters={pageNumber:page};
+  //   //this.productService.getFilteredProducts(productParameters,productName).subscribe({
+  //     this.productService.getAllProducts(productParameters).subscribe({
+  //     next: (products) => {
+  //       this.productsReadDto=products.products;
+  //       this.productsReadDto=this.productsReadDto.filter(p=>p.quantity!>0&&p.englishName.includes(productName))
+  //       this.totalCount= this.productsReadDto.length;
+  //       this.currentPage=page;
+  //     },
+  //     error: (err) => {
+  //       alert(err.error);
+  //       console.log(err);
+  //     },
+  //   });
+  // }
 
 
   GetDataToSendToBack() {
@@ -119,6 +129,6 @@ export class CustomerComponent implements OnInit  {
 
 
   filterWithProductName(productName:string){
-    this.GetFilteredProducts(this.currentPage,productName);
+    this.GetProducts(this.currentPage,productName);
   }
 }
