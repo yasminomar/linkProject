@@ -1,9 +1,9 @@
-<app-header (searchValueChanged)="GetProducts(1,$event)"></app-header>
+<app-header (searchValueChanged)="filterWithProductName($event)"></app-header>
 
 <div class="container prodContainer">
     <div class="row">
         <div
-          *ngFor="let product of productsReadDto | paginate:{itemsPerPage:5,currentPage:currentPage,totalItems:totalCount}"
+          *ngFor="let product of productsReadDto "
           class="col-lg-4 col-md-6 text-center product">
           <div class="product-image">
             <img class="card-img-top" width="200px" height="200px" src="{{ ServerBase }}{{ product.image }}" />
@@ -21,5 +21,5 @@
 
 
 
-<pagination-controls class="pagi"(pageChange)="GetProducts($event,'')"></pagination-controls>
+<!-- <pagination-controls class="pagi"(pageChange)="GetProducts($event,'')"></pagination-controls> -->
 

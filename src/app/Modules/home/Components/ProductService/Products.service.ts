@@ -18,6 +18,11 @@ export class ProductsService {
     return this.httpClient.post<ProductPaginationReadDto>(this.baseURL+"/Product/sortedProduct",productParameters)
   }
 
+  getAllProductsToHomePage(){
+    return this.httpClient.get<ProductReadDto[]>(this.baseURL+"/Product")
+
+  }
+
   getFilteredProducts(productParameters:any,productName:string){
     return this.httpClient.post<ProductPaginationReadDto>(this.baseURL+"/Product/sortedProduct/getFilteredProducts/"+productName,productParameters)
   }

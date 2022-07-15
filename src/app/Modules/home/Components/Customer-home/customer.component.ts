@@ -29,30 +29,17 @@ export class CustomerComponent implements OnInit  {
 
   ngOnInit(): void {
     this.fillUserCart();
-    this.GetProducts(this.currentPage,'');
+    this.GetProducts();
 
   
 
   }
 
 
-  GetProducts(page:number,productName:string){
-    var productParameters:ProductParameters={pageNumber:page};
-    this.productService.getAllProducts(productParameters).subscribe({
+  GetProducts(){
+    this.productService.getAllProductsToHomePage().subscribe({
       next: (products) => {
-        if(productName==''){
-          this.productsReadDto=products.products;
-          this.totalCount=products.totalCount;
-          this.currentPage=page;
-        }
-        else{
-          this.productsReadDto=products.products;
-          this.productsReadDto=this.productsReadDto.filter(p=>p.quantity!>0&&p.englishName.includes(productName))
-          this.totalCount= this.productsReadDto.length;
-          this.currentPage=page;
-
-        }
- 
+        this.productsReadDto=products;
       },
       error: (err) => {
         alert(err.error);
@@ -129,6 +116,14 @@ export class CustomerComponent implements OnInit  {
 
 
   filterWithProductName(productName:string){
-    this.GetProducts(this.currentPage,productName);
-  }
+    this.productService.getAllProductsToHomePage().subscribe({
+      next: (products) => {
+        this.productsReadDto=products;
+        this.productsReadDto=this.productsReadDto.filter(p=>p.quantity!>0&&p.englishName.toLocaleLowerCase().includes(productName.toLocaleLowerCase()));
+      },
+      error: (err) => {
+        alert(err.error);
+        console.log(err);
+      },
+    });  }
 }
