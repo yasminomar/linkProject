@@ -9,7 +9,7 @@
           </tr>
         </thead>
         <tbody >
-          <tr *ngFor="let category of categoriesReadDto">
+          <tr *ngFor="let category of categoriesReadDto| paginate:{itemsPerPage:5,currentPage:currentPage,totalItems:totalCount}">
             <td>{{category.name}}</td>
             <td>{{category.parentCategory.name}}</td>
             <td><mat-icon class="myIcon"(click)="editCategory($event,category)" >edit</mat-icon> <mat-icon (click)="deleteCategory($event,category.id!)" class="myIcon">delete_forever</mat-icon></td>
@@ -48,3 +48,4 @@
 
 
 
+<pagination-controls class="pagi"(pageChange)="GetCategories($event)"></pagination-controls>

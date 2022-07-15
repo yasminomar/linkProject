@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CartReadDto, ProductInCartReadDto, ProductInCartUpdateDto, ProductInCartWriteDto } from '../Models/cart.model';
 import { OrderHistoryReadDto, OrderReadDto, OrderWriteDto } from '../Models/order.models';
-import { CategoryReadDto, CategoryWriteDto, ParentCategoryReadDto } from '../Models/category.models';
+import { CategoryPaginationReadDto, CategoryReadDto, CategoryWriteDto, ParentCategoryReadDto } from '../Models/category.models';
 import { VendorReadDto } from '../Models/vendor.models';
 import { map, Observable } from 'rxjs';
 
@@ -16,6 +16,11 @@ export class ProductsService {
   constructor(private httpClient: HttpClient) { }
   getAllProducts(productParameters:any){
     return this.httpClient.post<ProductPaginationReadDto>(this.baseURL+"/Product/sortedProduct",productParameters)
+  }
+
+
+  getAllCategories(categoryParameters:any){
+    return this.httpClient.post<CategoryPaginationReadDto>(this.baseURL+"/Category/sortedCategory",categoryParameters)
   }
 
   getAllProductsToHomePage(){
@@ -98,7 +103,7 @@ export class ProductsService {
 
   }
 
-  getAllCategories(){
+  getAllCategoriesToShow(){
     return this.httpClient.get<CategoryReadDto[]>(this.baseURL+"/Category")
 
   }

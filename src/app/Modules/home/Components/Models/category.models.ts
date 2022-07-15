@@ -14,6 +14,15 @@ export interface CategoryReadDto {
   parentCategory:ChildParentCategoryReadDto 
 }
 
+export interface CategoryParameters{
+  pageNumber:number
+}
+
+
+export interface CategoryPaginationReadDto {
+  totalCount: number;
+  categories: CategoryReadDto[];
+}
 
 export interface ChildParentCategoryReadDto {
   id: string,

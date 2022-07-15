@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgxSmartModalService } from 'ngx-smart-modal';
 import { AuthService } from '../auth/auth.service';
-import { CategoryReadDto, CategoryWriteDto, ParentCategoryReadDto } from '../home/Components/Models/category.models';
+import { CategoryParameters, CategoryReadDto, CategoryWriteDto, ParentCategoryReadDto } from '../home/Components/Models/category.models';
 import { ProductsService } from '../home/Components/ProductService/Products.service';
 
 @Component({
@@ -27,6 +27,8 @@ export class CategoriesControllerComponent implements OnInit {
   categoryToEdit:CategoryReadDto|null=null;
   categoryUpdateDto:CategoryReadDto|null=null;
   parentCategoryReadDto:ParentCategoryReadDto[]=[];
+  totalCount=1;
+  currentPage=1;
 
   categoryWriteDto:CategoryWriteDto|null=null;
 
@@ -35,7 +37,7 @@ export class CategoriesControllerComponent implements OnInit {
     private ngxSmartModalService: NgxSmartModalService) { }
 
   ngOnInit(): void {
-    this.GetCategories();
+    this.GetCategories(1);
     this.GetParentCategories();
   }
   openCategoryCreation(){
@@ -44,10 +46,13 @@ export class CategoriesControllerComponent implements OnInit {
     
   }
 
-  GetCategories(){
-    this.productService.getAllCategories().subscribe({
+  GetCategories(page:number){
+    var categoryParameters:CategoryParameters={pageNumber:page};
+    this.productService.getAllCategories(categoryParameters).subscribe({
       next: (categories) => {
-        this.categoriesReadDto=categories;
+        this.categoriesReadDto=categories.categories;
+        this.totalCount=categories.totalCount;
+        this.currentPage=page;
       },
       error: (err) => {
         alert(err.error);

@@ -15,10 +15,16 @@ export interface ProductParameters{
 }
 
 
+
+
 export interface ProductPaginationReadDto {
   totalCount: number;
   products: ProductReadDto[];
 }
+
+
+
+
 
 export interface ProductReadDto {
   id?: string,

@@ -86,7 +86,7 @@ export class ProductsControllerComponent implements OnInit {
 
 
   GetCategories(){
-    this.productService.getAllCategories().subscribe({
+    this.productService.getAllCategoriesToShow().subscribe({
       next: (categories) => {
         this.categoryReadDto=categories;
       },
