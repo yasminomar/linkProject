@@ -1,6 +1,6 @@
 import { CartReadDto, ProductInCartWriteDto } from './../Models/cart.model';
 import { ProductParameters, ProductReadDto } from './../Models/product.model';
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges ,LOCALE_ID, Inject} from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/Modules/auth/auth.service';
 import { environment } from 'src/environments/environment';
@@ -24,7 +24,9 @@ export class CustomerComponent implements OnInit  {
     productId:'09c2eaf0-8b2b-4e8b-9f69-f3a40210094c'
   }
 
-  constructor(private productService: ProductsService,private router: Router,private auth: AuthService) {}
+  constructor(private productService: ProductsService,private router: Router,private auth: AuthService,@Inject(LOCALE_ID) public locale: string  ) {
+
+  }
 
   ngOnInit(): void {
     this.fillUserCart();
