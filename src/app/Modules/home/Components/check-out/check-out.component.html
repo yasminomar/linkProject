@@ -9,14 +9,14 @@
       <tbody >
         <tr >
 
-            <td><mat-icon> location_on</mat-icon><input #ShipmentAddress i18n-placeholder placeholder="Shipment Address"></td>
+            <td><mat-icon> location_on</mat-icon><input #ShipmentAddress i18n-placeholder placeholder="Shipment Address" ></td>
         </tr>
         <tr >
             <td><mat-icon>credit_card</mat-icon><input #PaymentMethod i18n-placeholder placeholder="Payment Method"></td>
         </tr>
       </tbody>
     </table>
-    <button class="buttun" (click)="CreateOrder(ShipmentAddress.value,PaymentMethod.value)" i18n>Order</button>
+    <button class="buttun" (click)="CreateOrder(ShipmentAddress.value,PaymentMethod.value)" [disabled]="ShipmentAddress.value==''||PaymentMethod.value==''" i18n>Order</button>
 
 
 

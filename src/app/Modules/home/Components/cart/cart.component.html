@@ -41,7 +41,7 @@
             </tbody>
           </table>
           <button class="buttun" (click)="updateCart()" i18n>Update Cart</button>
-          <button class="buttun" (click)="NavigateToCheckOut()" i18n>Check Out</button>
+          <button class="buttun" (click)="NavigateToCheckOut()" i18n [disabled]="subTotal==0">Check Out</button>
       </div>
     </div>
 </div>

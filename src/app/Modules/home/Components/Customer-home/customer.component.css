@@ -40,6 +40,12 @@ a.disabled{
     background-color: #374B56;
 }
 
+a.adminView{
+    display: none;
+    pointer-events:none;
+    cursor:not-allowed;
+}
+
 .pagi{
     
     text-align: center;
