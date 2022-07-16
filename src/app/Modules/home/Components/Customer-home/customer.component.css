@@ -14,7 +14,7 @@
     padding: 50px;
     box-shadow: 7px 10px 10px #ddd;
 }
-button.cart-btn{
+a.cart-btn{
     
     font-family: 'Poppins', sans-serif;
     display: inline-block;
@@ -34,10 +34,16 @@ button.cart-btn{
 .icon{
     margin-top: 5px;
 }
-button.disabled{
+a.disabled{
     pointer-events:none;
     cursor:not-allowed;
     background-color: #374B56;
+}
+
+a.adminView{
+    display: none;
+    pointer-events:none;
+    cursor:not-allowed;
 }
 
 .pagi{
