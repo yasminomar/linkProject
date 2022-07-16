@@ -31,6 +31,7 @@ export class CustomerComponent implements OnInit  {
   ngOnInit(): void {
     this.fillUserCart();
     this.GetProducts();
+    this.CheckAdmin();
 
   
 
