@@ -42,8 +42,6 @@ a.disabled{
 
 a.adminView{
     display: none;
-    pointer-events:none;
-    cursor:not-allowed;
 }
 
 .pagi{
