@@ -16,7 +16,7 @@
         </tr>
       </tbody>
     </table>
-    <button class="buttun" (click)="CreateOrder(ShipmentAddress.value,PaymentMethod.value)" [disabled]="ShipmentAddress.value==null||PaymentMethod.value==null" i18n>Order</button>
+    <button class="buttun" (click)="CreateOrder(ShipmentAddress.value,PaymentMethod.value)" [disabled]="ShipmentAddress.value==''||PaymentMethod.value==''" i18n>Order</button>
 
 
 
