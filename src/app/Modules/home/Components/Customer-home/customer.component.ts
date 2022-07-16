@@ -97,5 +97,16 @@ export class CustomerComponent implements OnInit  {
         alert(err.error);
         console.log(err);
       },
-    });  }
+    });  
+  }
+
+  CheckAdmin(){
+    const token = this.auth.getToken();
+
+    const tokenInfo = this.auth.getDecodedAccessToken(token!);
+    if(tokenInfo["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"] == "Admin"){
+      this.isAdmin = true;
+
+    }
+  }
 }
