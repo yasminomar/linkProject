@@ -34,6 +34,7 @@ export class CheckOutComponent implements OnInit {
     });
   }
   CreateOrder(shipmentAddress:string,paymentMethod:string){
+    console.log("yasmine",shipmentAddress,paymentMethod);
     this.orderWriteDto.cartId=this.cartId;
     this.orderWriteDto.ShipmentAddress=shipmentAddress;
     this.orderWriteDto.paymentMethod=paymentMethod;
