@@ -90,7 +90,7 @@ export class CustomerComponent implements OnInit  {
     this.productService.getAllProductsToHomePage().subscribe({
       next: (products) => {
         this.productsReadDto=products;
-        this.productsReadDto=this.productsReadDto.filter(p=>p.quantity!>0&&p.englishName.toLocaleLowerCase().includes(productName.toLocaleLowerCase()));
+        this.productsReadDto=this.productsReadDto.filter(p=>p.quantity!>0&&p.arabicName.includes(productName));
       },
       error: (err) => {
         alert(err.error);

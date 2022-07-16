@@ -36,13 +36,13 @@ table{
     padding: 10px 10px;
     border-radius: 28px;
     text-decoration: none;
-    margin-left: 10px;
+    margin-right: 10px;
 
 }
 
 .myIcon{
     color: #F28123;
-    margin-left: 20px;
+    margin-right: 20px;
 
 }
 
@@ -50,7 +50,7 @@ table{
 .addIcon{
     color: #F28123;
     font-size: 50px;
-    margin-left: 35px;
+    margin-right: 35px;
 
 }
 
