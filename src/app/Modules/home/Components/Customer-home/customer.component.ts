@@ -33,8 +33,6 @@ export class CustomerComponent implements OnInit  {
     this.GetProducts();
     this.CheckAdmin();
 
-  
-
   }
 
 
