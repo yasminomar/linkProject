@@ -12,7 +12,7 @@
         </thead>
         <tbody >
           <tr *ngFor="let order of orderHistoryReadDto">
-            <td class="modal"><a (click)="openOrderDetailes(order)">{{order.id}}</a></td>
+            <td class="mymodal"><a (click)="openOrderDetailes(order)">{{order.id}}</a></td>
             <td i18n>{{order.shippmentAddress}}</td>
             <td i18n>{{order.totalPrice}}</td>
             <td i18n>{{order.paymentMethod}}</td>
