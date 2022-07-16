@@ -17,9 +17,7 @@
           <h3 class="prodName" i18n *ngIf="locale=='ar-EG'">{{ product.arabicName }}</h3>
           <h3 class="prodName" i18n>{{ product.category.name }}</h3>
           <p class="product-price" i18n><span>Per Kg</span> {{ product.unitPrice }}$</p>
-          <div  [class.adminView]="isAdmin==true">
-            <a [class.disabled]="isProductAdded(product)&&isAdmin==false"  id="{{product.id}}" (click)="AddToCart($event.target,product)" class="cart-btn"><mat-icon id="{{product.id}}" class="icon">add_shopping_cart</mat-icon><p id="{{product.id}}" class="addToCart"i18n>Add to cart</p></a>
-          </div>
+          <a [class.disabled]="isProductAdded(product)&&isAdmin==false"  [class.adminView]="isAdmin==true" id="{{product.id}}" (click)="AddToCart($event.target,product)" class="cart-btn"><mat-icon id="{{product.id}}" class="icon">add_shopping_cart</mat-icon><p id="{{product.id}}" class="addToCart"i18n>Add to cart</p></a>
         </div>
       </div>
 </div>
