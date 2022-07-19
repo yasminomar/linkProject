@@ -118,6 +118,7 @@ export class ProductsControllerComponent implements OnInit {
           this.ngxSmartModalService.getModal('openProductCreationModal').close();
         },
         error: (err) => {
+          console.log(err);
           alert(err.error.message);
         },
       });

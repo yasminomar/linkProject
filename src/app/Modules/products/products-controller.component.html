@@ -58,7 +58,7 @@
     <input class="form-control" name="quantity" type="number" formControlName="quantity" required="required">
     <div class= "error-message" *ngIf="ProductForm.get('quantity')?.invalid && ProductForm.get('quantity')?.touched">
       <span *ngIf="ProductForm.get('quantity')?.hasError('required')" i18n>Quantity is required</span>
-      <span *ngIf="ProductForm.get('quantity')?.hasError('max')" i18n>quantity must be less than or = 1000</span>
+      <span *ngIf="ProductForm.get('quantity')?.hasError('max')" i18n>quantity must be less than or = 10000</span>
       <span *ngIf="ProductForm.get('quantity')?.hasError('min')" i18n>quantity must be more than or = 1</span>
 
     </div>
@@ -72,7 +72,7 @@
     <input class="form-control" name="unitPrice" type="number" formControlName="unitPrice" required="required">
     <div class= "error-message" *ngIf="ProductForm.get('unitPrice')?.invalid && ProductForm.get('unitPrice')?.touched">
       <span *ngIf="ProductForm.get('unitPrice')?.hasError('required')" i18n>Price is required</span>
-      <span *ngIf="ProductForm.get('unitPrice')?.hasError('max')" i18n >price must be less than or = 1000</span>
+      <span *ngIf="ProductForm.get('unitPrice')?.hasError('max')" i18n >price must be less than or = 10000</span>
       <span *ngIf="ProductForm.get('unitPrice')?.hasError('min')" i18n>price must be more than or = 1</span>
 
     </div>
