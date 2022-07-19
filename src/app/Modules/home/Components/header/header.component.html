@@ -1,7 +1,6 @@
 
  <nav class="navbar navbar-expand-lg navbar-dark sticky-top " style="background-color: #374B56; ">
     <div class="container">
-      <a href="https://link-project-rouge-ar.vercel.app/home/products"><mat-icon>translate</mat-icon></a>
       <a class="navbar-brand" (click)="GoToProducts()"><img class="img-fluid" height="auto" width="150px" src="../../../../../assets/images/logo.png"></a>
    
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -11,6 +10,7 @@
       <button type="button" *ngIf="isAdmin == true " class="btn btn-success m-4" (click)="NavigateToAdmin()" i18n>Admin</button>
       <mat-icon class="orderIcon" (click)="GoToOrders()"  *ngIf="isAdmin == false"> local_shipping</mat-icon>
       <mat-icon (click)="GoToCart()" class="Logout"  *ngIf="isAdmin == false">add_shopping_cart</mat-icon>
+      <a href="https://link-project-rouge-ar.vercel.app/home/products"><mat-icon class="translate">translate</mat-icon></a>
       <mat-icon class="Logout" (click)="logOut()" *ngIf="isLoggedIn">exit_to_app</mat-icon>
     </div>
   </nav>
