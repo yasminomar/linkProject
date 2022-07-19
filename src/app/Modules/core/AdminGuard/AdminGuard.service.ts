@@ -27,9 +27,7 @@ export class AdminService implements CanActivate {
       const token = this.auth.getToken();
       const tokenInfo = this.auth.getDecodedAccessToken(token!);
         if(tokenInfo["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"] == "Admin"){
-            console.log(tokenInfo);
             return true;
-
         }
     }
 
