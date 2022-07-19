@@ -9,7 +9,7 @@ import { RegisterComponent } from "./Component/Register/register.component";
 
 
 const routes:Routes=[{
-  path:'',component:LoginComponent
+  path:'',component:AuthComponent
   ,children:[ 
       {path:"register",component:RegisterComponent}
   ,{path:'login',component:LoginComponent}
