@@ -3,9 +3,6 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../auth.service';
 
-
-
-
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -29,17 +26,13 @@ export class RegisterComponent implements OnInit {
 
     this.authService.RegisterCustomer(this.registerForm.value).subscribe({
       next: (response) => {
-
         this.route.navigate(['/auth/login'])
-
       },
       error: (err) => {
         console.log(err.error)
-
         for (let i = 0; i < err.error.length; i++) {
           alert(err.error[i].description);
         }
-
         console.log(err);
       },
     });

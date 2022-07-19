@@ -142,11 +142,7 @@ export class ProductsService {
   
 
   getImage(image: string): Observable<File> {
-    return this.httpClient
-      .get(`${image}?cors=yes`, {
-        responseType: 'blob',
-      })
-      .pipe(map((blob) => new File([blob], 'image.jpg', { type: blob.type })));
+    return this.httpClient.get(`${image}?cors=yes`, {responseType: 'blob',}).pipe(map((blob) => new File([blob], 'image.jpg', { type: blob.type })));
   }
 
 }

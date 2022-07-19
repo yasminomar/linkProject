@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/Modules/auth/auth.service';
 import { environment } from 'src/environments/environment';
-import { ProductInCartReadDto } from '../Models/cart.model';
 import { OrderHistoryReadDto } from '../Models/order.models';
 import { ProductsService } from '../ProductService/Products.service';
 
@@ -20,7 +19,7 @@ export class MyOrdersComponent implements OnInit {
   ordertoShow:OrderHistoryReadDto|null=null;
   ServerBase = environment.ServerBase;
 
-  constructor(private productService: ProductsService,private router: Router,private auth: AuthService,private ngxSmartModalService: NgxSmartModalService){ }
+  constructor(private productService: ProductsService,private ngxSmartModalService: NgxSmartModalService){ }
 
   ngOnInit(): void {
     this.getUserCartId();
@@ -29,9 +28,7 @@ export class MyOrdersComponent implements OnInit {
   fillUserOrders() {
     this.productService.getOrdersByUserId().subscribe({
       next: (orders) => {
-        console.log(orders)
         this.orderHistoryReadDto=orders;
-        console.log("yas",this.orderHistoryReadDto);
       },
       error: (err) => {
         alert(err.error);
@@ -39,6 +36,7 @@ export class MyOrdersComponent implements OnInit {
       },
     });
   }
+
   getUserCartId() {
     this.productService.getCartByUserId().subscribe({
       next: (cart) => {
@@ -50,8 +48,6 @@ export class MyOrdersComponent implements OnInit {
       },
     });
   }
-
-
   openOrderDetailes(order:OrderHistoryReadDto){
     this.ngxSmartModalService.getModal('openOrderDetailesModal').open();
     this.ordertoShow=order;

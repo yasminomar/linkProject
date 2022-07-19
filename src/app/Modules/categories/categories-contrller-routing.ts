@@ -1,14 +1,14 @@
 
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { AuthGuardService } from "../core/authGuard/auth-guard.service";
+import { AdminService } from "../core/AdminGuard/AdminGuard.service";
 import { CategoriesControllerComponent } from "./categories-controller.component";
 
 
 
 const routes:Routes=[{
-  path:'',component:CategoriesControllerComponent,children:[ 
-   {path:'controller',component:CategoriesControllerComponent,canActivate:[AuthGuardService]}]
+  path:'',component:CategoriesControllerComponent ,canActivate:[AdminService],children:[ 
+   {path:'controller',component:CategoriesControllerComponent,canActivate:[AdminService]}]
 }]
 
 @NgModule({

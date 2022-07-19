@@ -3,8 +3,8 @@
 		<div class="app-auth-branding mb-4"><a class="app-logo" href="index.html"><img class="logo-icon me-2" src="../../../../../assets/images/logo.png" alt="logo"></a></div>
 		<h2 class="auth-heading text-center mb-5" style="font-size: 40px;font-weight: 700;color: #374B56;" i18n>Login</h2>
 		<div class="auth-form-container text-start">
-
-			<form class="auth-form login-form"[formGroup]="loginForm" (ngSubmit)="login()">         
+			<form class="auth-form login-form"[formGroup]="loginForm" (ngSubmit)="login()">   
+				      
 				<div class="email mb-3">
 					<label class="sr-only" for="signin-email"i18n>Email</label>
 					<input id="signin-email" name="signin-email" type="email" class="form-control signin-email" i18n-placeholder placeholder="Email address" formControlName="email" required="required">
@@ -13,10 +13,7 @@
 						<span *ngIf="loginForm.get('email')?.hasError('required')" i18n>Email is required</span>
 						<span *ngIf="loginForm.get('email')?.hasError('pattern')" i18n >please enter valid email</span>
 				    </div>
-				</div><!--//form-group-->
-
-
-
+				</div>
 
 				<div class="password mb-3">
 					<label class="sr-only" for="signin-password"i18n>Password</label>
@@ -25,32 +22,13 @@
 						<span *ngIf="loginForm.get('password')?.hasError('required')" i18n>Password is required</span>
 						<span *ngIf="loginForm.get('password')?.hasError('minlength')" i18n>Password must be 8 digits</span>
 					</div>
-
-
-
-
-
-				</div><!--//form-group-->
+				</div>
 				<div class="text-center">
 					<button i18n type="submit" class="btn app-btn-primary w-100 theme-btn mx-auto " style="background-color:#374B56; color: #fff; " [disabled]="!loginForm.valid">Login</button>
 				</div>
 			</form>
-
-
-
-
-
-
-
-
-
-
-			
 			<div class="auth-option text-center pt-5">No Account? Sign up <a class="text-link" [routerLink]="'/auth/register'">here</a>.
 			</div>
-		</div><!--//auth-form-container-->	
-
-	</div><!--//auth-body-->
-
-
-</div><!--//flex-column-->   
+		</div>
+	</div>
+</div>

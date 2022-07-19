@@ -1,10 +1,6 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/Modules/auth/auth.service';
-import {
-  ProductInCartReadDto,
-  ProductInCartUpdateDto,
-} from '../Models/cart.model';
+import {ProductInCartReadDto,ProductInCartUpdateDto} from '../Models/cart.model';
 import { ProductsService } from '../ProductService/Products.service';
 import { environment } from 'src/environments/environment';
 
@@ -13,7 +9,7 @@ import { environment } from 'src/environments/environment';
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css'],
 })
-export class CartComponent implements OnInit, OnChanges {
+export class CartComponent implements OnInit {
   cartId: string = '';
   productsInCartReadDto: ProductInCartReadDto[] = [];
   ServerBase = environment.ServerBase;
@@ -23,18 +19,12 @@ export class CartComponent implements OnInit, OnChanges {
     productId: '',
   };
   subTotal=0;
-  constructor(
-    private productService: ProductsService,
-    private router: Router,
-    private auth: AuthService
-  ) {}
+  constructor(private productService: ProductsService,private router: Router) {}
 
   ngOnInit(): void {
     this.getUserCartId();
-    // this.fillUserCart();
   }
 
-  ngOnChanges(): void {}
 
   fillUserCart() {
     this.productService.getProductsByCartId(this.cartId).subscribe({
@@ -52,12 +42,12 @@ export class CartComponent implements OnInit, OnChanges {
       },
     });
   }
+
   getUserCartId() {
     this.productService.getCartByUserId().subscribe({
       next: (cart) => {
         this.cartId = cart.id;
         this.fillUserCart();
-
       },
       error: (err) => {
         alert(err.error);
@@ -81,7 +71,6 @@ export class CartComponent implements OnInit, OnChanges {
             .updateQuantity(this.productInCartUpdateDto, id)
             .subscribe({
               next: (productInCartReadDto) => {
-                // console.log(productInCartReadDto);
                 this.productService.getProductById(productId).subscribe({
                   next: (product) => {
                     this.productsInCartReadDto.find(

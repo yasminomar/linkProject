@@ -19,8 +19,7 @@ export class OrderComponent implements OnInit {
   ServerBase = environment.ServerBase;
 
   constructor(private productService: ProductsService,
-    private router: Router,
-    private auth: AuthService) { }
+    private router: Router) { }
   ngOnInit(): void {
     this.getUserCartId();
   }
@@ -45,11 +44,11 @@ export class OrderComponent implements OnInit {
       },
     });
   }
+
   getUserCartId() {
     this.productService.getCartByUserId().subscribe({
       next: (cart) => {
         this.cartId = cart.id;
-        console.log("yasmine",cart);
         this.fillUserCart();
       },
       error: (err) => {
@@ -58,10 +57,10 @@ export class OrderComponent implements OnInit {
       },
     });
   }
+
   SubmitOrder(){
     this.productService.DeleteProductInCartByCartId(this.cartId).subscribe({
       next: (productsInCart) => {
-        console.log(productsInCart);
         productsInCart.forEach((productInCart)=>(
           this.productService.UpdateProductQuantity(productInCart.product.id,productInCart.quantity).subscribe({
             next: (product) => {

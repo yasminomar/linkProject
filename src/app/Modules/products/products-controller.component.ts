@@ -55,8 +55,6 @@ export class ProductsControllerComponent implements OnInit {
   vendorReadDto:VendorReadDto[]=[];
   constructor(
     private productService: ProductsService,
-    private router: Router,
-    private auth: AuthService,
     private ngxSmartModalService: NgxSmartModalService
 
   ) {}
@@ -82,9 +80,6 @@ export class ProductsControllerComponent implements OnInit {
     });
   }
 
-
-
-
   GetCategories(){
     this.productService.getAllCategoriesToShow().subscribe({
       next: (categories) => {
@@ -97,10 +92,6 @@ export class ProductsControllerComponent implements OnInit {
     });
   }
 
-
-
-
-  
   GetVendors(){
     this.productService.getAllVendors().subscribe({
       next: (vendors) => {
@@ -112,12 +103,10 @@ export class ProductsControllerComponent implements OnInit {
       },
     });
   }
+
   AddOrEditProduct(){
-    var input = document.querySelector(
-      'input[type="file"]'
-    ) as HTMLInputElement;
+    var input = document.querySelector('input[type="file"]') as HTMLInputElement;
     const { value, valid, dirty } = this.ProductForm;
-   
     if (!valid || !dirty||!this.validateImage()) return;
     if(!this.productToEdit){
       var formData=new FormData(document.querySelector('form')!);
@@ -129,38 +118,27 @@ export class ProductsControllerComponent implements OnInit {
           this.ngxSmartModalService.getModal('openProductCreationModal').close();
         },
         error: (err) => {
-          
-          alert(err.error);
+          console.log(err);
+          alert(err.error.message);
         },
       });
     }
     else {
       var formData=new FormData(document.querySelector('form')!);
       formData.append("id",this.productToEdit?.id??"")
-
-      this.productService
-        .editProduct(this.productToEdit.id!, formData)
-        .subscribe({
-          next: (product) => {
-              const indexToEdit = this.productsReadDto.findIndex(
-                (p) => p.id === product.id)
-              this.productsReadDto.splice(indexToEdit, 1, product);
-
-              this.productToEdit = null;
-              this.ProductForm.reset();
-              this.ngxSmartModalService.getModal('openProductCreationModal').close();
-            
-
-       
-          },
-          error: (err) => {
-            console.log(err);
-          },
-        });
+      this.productService.editProduct(this.productToEdit.id!, formData).subscribe({
+        next: (product) => {
+            const indexToEdit = this.productsReadDto.findIndex((p) => p.id === product.id)
+            this.productsReadDto.splice(indexToEdit, 1, product);
+            this.productToEdit = null;
+            this.ProductForm.reset();
+            this.ngxSmartModalService.getModal('openProductCreationModal').close();
+        },
+        error: (err) => {
+          console.log(err);
+        },
+      });
     }
-
-    
-
   }
 
   openProductCreation(){
@@ -170,16 +148,11 @@ export class ProductsControllerComponent implements OnInit {
   }
 
   editProduct(event:any,product:ProductReadDto){
-    //event.stopPropagation();
-
     this.productService.getImage(this.ServerBase+product.image).subscribe({
       next:(file)=>{
         this.ngxSmartModalService.getModal('openProductCreationModal').open();
-
         this.productToEdit=product;
-        var input = document.querySelector(
-          'input[type="file"]'
-        ) as HTMLInputElement;
+        var input = document.querySelector('input[type="file"]') as HTMLInputElement;
         var data = new DataTransfer();
         data.items.add(file);
         input!.files = data.files;        
@@ -189,61 +162,27 @@ export class ProductsControllerComponent implements OnInit {
           unitPrice:product.unitPrice,
           quantity:product.quantity,
           categoryId:product.category.id,
-          vendorId:product.vendor.id,
-          
-          
+          vendorId:product.vendor.id,      
         })
-
       },
-
-
     })
-
-  
-
   }
 
-
-
-
-
-
-
   deleteProduct(event:any,id:string){
-    //event.stopPropagation();
     if (confirm('Are you sure you want to delete this Product?!')) {
-
       this.productService.deleteProduct(id).subscribe({
         next: (product) => {
           this.productsReadDto = this.productsReadDto.filter((p) => p.id !== id);
         },
         error: (err) => {
-          
           alert(err.error);
         },
       });
-
-
     }
-
-
-
   }
 
-
-
-
-
   validateImage(){
-    var input = document.querySelector(
-         'input[type="file"]'
-       ) as HTMLInputElement|null;
-   return input?.files?.length
+    var input = document.querySelector('input[type="file"]') as HTMLInputElement|null;
+    return input?.files?.length
  }
-
-
-
-
-
-
 }

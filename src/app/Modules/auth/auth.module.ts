@@ -7,8 +7,6 @@ import { AuthRouting } from './auth-routing';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 
-
-
 @NgModule({
   declarations: [
     AuthComponent,

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/Modules/auth/auth.service';
 import { OrderWriteDto } from '../Models/order.models';
 import { ProductsService } from '../ProductService/Products.service';
 
@@ -17,7 +16,7 @@ export class CheckOutComponent implements OnInit {
     paymentMethod:''
   }
 
-  constructor(private productService: ProductsService,private router: Router,private auth: AuthService) { }
+  constructor(private productService: ProductsService,private router: Router) { }
 
   ngOnInit(): void {
     this.getUserCartId()

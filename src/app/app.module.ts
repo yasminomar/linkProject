@@ -11,6 +11,8 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Interceptor } from './Modules/core/interceptore/interceptors.service';
 import {NgxPaginationModule} from 'ngx-pagination'; 
 import { HomeModule } from './Modules/home/home.module';
+import { CategoriesModule } from './Modules/categories/categories.module';
+import { ProductsModule } from './Modules/products/products.module';
 
 
 
@@ -27,6 +29,8 @@ import { HomeModule } from './Modules/home/home.module';
     FormsModule,
     CoreModule,
     HomeModule,
+    ProductsModule,
+    CategoriesModule,
     BrowserAnimationsModule
 
   ],

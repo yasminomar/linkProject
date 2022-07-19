@@ -12,3 +12,8 @@
 div.disabled{
     display:none;
 }
+.translate{
+    color:white;
+    margin-right:20px;
+    text-decoration:none;
+}
