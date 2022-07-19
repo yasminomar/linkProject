@@ -23,10 +23,6 @@ export class LoginComponent implements OnInit {
     ]),
   });
 
-
-
-
-
   constructor(private authService: AuthService, private route: Router) { }
 
   ngOnInit(): void {
@@ -36,14 +32,12 @@ export class LoginComponent implements OnInit {
     if (!this.loginForm.valid) {
       return;
     } else {
-
       this.authService.login(this.loginForm.value).subscribe({
-        next: (response) => {
-          localStorage.setItem('token', (response as any).token);
+        next: (token) => {
+          localStorage.setItem('token', (token as any).token);
           this.route.navigate(['/home/products']);
         },
         error: (err) => {
-          
           alert(err.error);
         },
       });

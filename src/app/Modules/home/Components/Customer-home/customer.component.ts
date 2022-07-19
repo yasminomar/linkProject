@@ -1,6 +1,6 @@
 import { CartReadDto, ProductInCartWriteDto } from './../Models/cart.model';
-import { ProductParameters, ProductReadDto } from './../Models/product.model';
-import { Component, OnChanges, OnInit, SimpleChanges ,LOCALE_ID, Inject} from '@angular/core';
+import {  ProductReadDto } from './../Models/product.model';
+import { Component, OnInit ,LOCALE_ID, Inject} from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/Modules/auth/auth.service';
 import { environment } from 'src/environments/environment';
@@ -14,7 +14,6 @@ import { ProductsService } from '../ProductService/Products.service';
 export class CustomerComponent implements OnInit  {
   totalCount=1;
   currentPage=1;
-  
   cart:CartReadDto|null=null;
   isAdmin : boolean = false;
   productsReadDto: ProductReadDto[] = [];
@@ -48,20 +47,12 @@ export class CustomerComponent implements OnInit  {
     });
   }
 
-  logout(){
-    localStorage.clear();
-    this.router.navigate(['/auth/login']);
-    this.isAdmin = false;
-  }
-
-
   AddToCart(e:any,prod:ProductReadDto){
  
     this.productInCartWriteDto.cartId=this.cart?.id;
     this.productInCartWriteDto.productId=e.id;
     this.productService.AddProductToCart(this.productInCartWriteDto).subscribe({
       next:(p)=>{
-       this.fillUserCart();
       },
       error: (err) => {
         alert(err.error);
@@ -101,7 +92,6 @@ export class CustomerComponent implements OnInit  {
 
   CheckAdmin(){
     const token = this.auth.getToken();
-
     const tokenInfo = this.auth.getDecodedAccessToken(token!);
     if(tokenInfo["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"] == "Admin"){
       this.isAdmin = true;

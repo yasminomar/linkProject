@@ -29,12 +29,9 @@ export class CategoriesControllerComponent implements OnInit {
   parentCategoryReadDto:ParentCategoryReadDto[]=[];
   totalCount=1;
   currentPage=1;
-
   categoryWriteDto:CategoryWriteDto|null=null;
 
-  constructor(    private productService: ProductsService,
-    private router: Router,
-    private ngxSmartModalService: NgxSmartModalService) { }
+  constructor(    private productService: ProductsService,private ngxSmartModalService: NgxSmartModalService) { }
 
   ngOnInit(): void {
     this.GetCategories(1);
@@ -43,7 +40,6 @@ export class CategoriesControllerComponent implements OnInit {
   openCategoryCreation(){
     this.CategoryForm.reset();
     this.ngxSmartModalService.getModal('openCategoryCreationModal').open();
-    
   }
 
   GetCategories(page:number){
@@ -61,8 +57,6 @@ export class CategoriesControllerComponent implements OnInit {
     });
   }
 
-
-
   editCategory(event:any,category:CategoryReadDto){
     event.stopPropagation();   
     this.categoryToEdit=category;    
@@ -75,33 +69,22 @@ export class CategoriesControllerComponent implements OnInit {
 
   deleteCategory(event:any,id:string){
     event.stopPropagation();
-
-      this.productService.deleteCategory(id).subscribe({
-        next: (category) => {
-          this.categoriesReadDto = this.categoriesReadDto.filter((c) => c.id !== id);
-        },
-        error: (err) => {
-          
-          alert(err.error);
-        },
-      });
-
-
-    
-
-
-
+    this.productService.deleteCategory(id).subscribe({
+      next: (category) => {
+        this.categoriesReadDto = this.categoriesReadDto.filter((c) => c.id !== id);
+      },
+      error: (err) => {
+        
+        alert(err.error);
+      },
+    });
   }
 
   AddOrEditCategory(){
-  
     const { value, valid, dirty } = this.CategoryForm;
-   
     if (!valid || !dirty) return;
     if(!this.categoryToEdit){
-      this.categoryWriteDto={...this.CategoryForm.value,
-        parentCategoryId:this.CategoryForm.value.parentCategory
-      };
+      this.categoryWriteDto={...this.CategoryForm.value,parentCategoryId:this.CategoryForm.value.parentCategory};
       this.productService.AddCategory(this.categoryWriteDto!).subscribe({
         next: (category) => {
           alert("Category Added Sucecss");
@@ -116,33 +99,20 @@ export class CategoriesControllerComponent implements OnInit {
       });
     }
     else {
-
-this.categoryUpdateDto={
-  ...this.CategoryForm.value,
-  parentCategoryId:this.CategoryForm.value.parentCategory,
-  id:this.categoryToEdit.id
-}
-      
-      this.productService
-        .editCategory(this.categoryToEdit.id!, this.categoryUpdateDto!)
-        .subscribe({
-          next: (category) => {
-              const indexToEdit = this.categoriesReadDto.findIndex(
-                (c) => c.id === category.id)
-              this.categoriesReadDto.splice(indexToEdit, 1, category);
-
-              this.categoryToEdit = null;
-              this.CategoryForm.reset();
-              this.ngxSmartModalService.getModal('openCategoryCreationModal').close();
-          },
-          error: (err) => {
-            console.log(err);
-          },
-        });
+      this.categoryUpdateDto={...this.CategoryForm.value,parentCategoryId:this.CategoryForm.value.parentCategory,id:this.categoryToEdit.id}
+      this.productService.editCategory(this.categoryToEdit.id!, this.categoryUpdateDto!).subscribe({
+        next: (category) => {
+            const indexToEdit = this.categoriesReadDto.findIndex((c) => c.id === category.id)
+            this.categoriesReadDto.splice(indexToEdit, 1, category);
+            this.categoryToEdit = null;
+            this.CategoryForm.reset();
+            this.ngxSmartModalService.getModal('openCategoryCreationModal').close();
+        },
+        error: (err) => {
+          console.log(err);
+        },
+      });
     }
-
-    
-
   }
 
 
