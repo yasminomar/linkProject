@@ -53,6 +53,7 @@ export class CustomerComponent implements OnInit  {
     this.productInCartWriteDto.productId=e.id;
     this.productService.AddProductToCart(this.productInCartWriteDto).subscribe({
       next:(p)=>{
+        this.fillUserCart();
       },
       error: (err) => {
         alert(err.error);
