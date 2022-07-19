@@ -13,9 +13,8 @@ import { HomeComponent } from "./home.component";
 
 
 const routes:Routes=[{
-  path:'',component:HomeComponent
-  ,children:[ 
-    {path:"admin",component:AdminComponent  ,canActivate:[AdminService]}
+  path:'',component:HomeComponent,canActivate:[AuthGuardService],children:[ 
+   {path:'admin',component:AdminComponent  ,canActivate:[AdminService]}
   ,{path:'products',component:CustomerComponent,canActivate:[AuthGuardService]}
   ,{path:'cart',component:CartComponent,canActivate:[AuthGuardService]}
   ,{path:'checkOut',component:CheckOutComponent,canActivate:[AuthGuardService]}
